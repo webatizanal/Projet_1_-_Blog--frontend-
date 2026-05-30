@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Catégorie - Mon Blog</title>
+    <link rel="stylesheet" href="/src/style.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pinyon+Script&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <header class="h-fit">
+        <!-- ==================== PREMIÈRE NAVBAR ==================== -->
+        <div class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
+            <a href="/src/public/index.html" class="hover:text-blue-400"><div class="text-2xl font-bold text-blue-600 tektur">🍃 MonBlog</div></a>
+            <div class="flex gap-4 items-center">
+                <img src="../assets/rechercher.png" alt="" class="w-6 h-6">
+                <a href="#" class="text-gray-600 hover:text-blue-500">FB</a>
+                <a href="#" class="text-gray-600 hover:text-blue-500">X</a>
+                <a href="#" class="text-gray-600 hover:text-blue-500">IG</a>
+                <a href="/src/public/login.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Connexion</a>
+            </div>
+        </div>
+
+        <!-- ==================== DEUXIÈME NAVBAR ==================== -->
+        <div class="bg-gray-800 text-white py-3 px-6 flex flex-wrap justify-center gap-6">
+            <a href="/src/public/index.html" class="hover:text-blue-400">Accueil</a>
+            <a href="/src/public/category.html?id=tech" class="hover:text-blue-400">Catégories ›</a>
+            <a href="/src/public/about.html" class="hover:text-blue-400">À propos</a>
+            <a href="/src/public/contact.html" class="hover:text-blue-400">Contact</a>
+        </div>  
+    </header>
+
+    <!-- Contenu principal -->
+    <main class="max-w-7xl mx-auto py-12 px-4">
+        <!-- En-tête de catégorie -->
+        <div class="text-center mb-12">
+            <h1 id="category-name" class="text-4xl font-bold mb-4">Tech</h1>
+            <p id="category-desc" class="text-gray-600 max-w-2xl mx-auto">Les dernières actualités et tendances du monde technologique.</p>
+        </div>
+
+        <!-- Liste des articles -->
+        <div id="articles-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Article 1 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <img src="https://picsum.photos/id/0/400/250" alt="Article tech" class="w-full h-48 object-cover">
+                <div class="p-5">
+                    <div class="text-xs text-blue-600 font-semibold mb-2">Tech • 15 min de lecture</div>
+                    <h2 class="text-xl font-bold mb-2">Les tendances tech 2025</h2>
+                    <p class="text-gray-600 mb-4">Découvrez ce qui va marquer l'industrie cette année...</p>
+                    <a href="/src/public/article.html?id=1" class="text-blue-600 font-medium hover:underline">Lire l'article →</a>
+                </div>
+            </div>
+            <!-- Article 2 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <img src="https://picsum.photos/id/1/400/250" alt="Article tech" class="w-full h-48 object-cover">
+                <div class="p-5">
+                    <div class="text-xs text-blue-600 font-semibold mb-2">Tech • 8 min de lecture</div>
+                    <h2 class="text-xl font-bold mb-2">Pourquoi la 6G arrive plus vite qu'on ne le pense</h2>
+                    <p class="text-gray-600 mb-4">Les premiers tests sont prometteurs...</p>
+                    <a href="/src/public/article.html?id=2" class="text-blue-600 font-medium hover:underline">Lire l'article →</a>
+                </div>
+            </div>
+            <!-- Article 3 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <img src="https://picsum.photos/id/2/400/250" alt="Article tech" class="w-full h-48 object-cover">
+                <div class="p-5">
+                    <div class="text-xs text-blue-600 font-semibold mb-2">Tech • 12 min de lecture</div>
+                    <h2 class="text-xl font-bold mb-2">Le cloud computing en 2025</h2>
+                    <p class="text-gray-600 mb-4">Les géants du cloud se disputent le marché...</p>
+                    <a href="/src/public/article.html?id=3" class="text-blue-600 font-medium hover:underline">Lire l'article →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination (structure) -->
+        <div class="flex justify-center gap-3 mt-12">
+            <a href="#" class="px-4 py-2 border rounded-lg hover:bg-gray-100">« Précédent</a>
+            <a href="#" class="px-4 py-2 border rounded-lg bg-blue-600 text-white">1</a>
+            <a href="#" class="px-4 py-2 border rounded-lg hover:bg-gray-100">2</a>
+            <a href="#" class="px-4 py-2 border rounded-lg hover:bg-gray-100">3</a>
+            <a href="#" class="px-4 py-2 border rounded-lg hover:bg-gray-100">Suivant »</a>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400 py-10 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>© 2025 MonBlog - Tous droits réservés</p>
+        </div>
+    </footer>
+</body>
+</html>

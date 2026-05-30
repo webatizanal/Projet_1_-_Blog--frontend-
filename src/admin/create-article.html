@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Créer un article</title>
+    <link rel="stylesheet" href="/src/style.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pinyon+Script&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+
+    <header>
+        <div class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
+            <div class="text-2xl font-bold text-blue-600 tektur">Admin Blog</div>
+            <button id="logout-btn" class="text-red-500 hover:text-red-700">Déconnexion</button>
+        </div>
+
+        <div class="bg-gray-800 text-white py-3 px-6 flex justify-center gap-8">
+            <a href="/src/admin/users.html" class="hover:text-blue-400">Utilisateurs</a>
+            <a href="/src/admin/categories.html" class="hover:text-blue-400">Catégories</a>
+            <a href="/src/admin/all-articles.html" class="hover:text-blue-400">Articles</a>
+            <a href="/src/admin/drafts.html" class="hover:text-blue-400">Brouillons</a>
+        </div>        
+    </header>
+
+
+    <main class="max-w-4xl mx-auto py-10 px-4">
+        <h1 class="text-3xl font-bold mb-6">✍️ Créer un article (admin)</h1>
+        
+        <form id="create-article-form" class="bg-white p-6 rounded-lg shadow space-y-5">
+            <div>
+                <label class="block font-medium mb-1">Titre *</label>
+                <input type="text" id="title" class="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500" placeholder="Ex: Comprendre JavaScript" required>
+            </div>
+            <div>
+                <label class="block font-medium mb-1">Catégorie *</label>
+                <select id="category" class="w-full p-2 border rounded">
+                    <option value="tech">Tech</option>
+                    <option value="dev" selected>Développement</option>
+                    <option value="ia">Intelligence Artificielle</option>
+                    <option value="design">Design</option>
+                </select>
+            </div>
+            <div>
+                <label class="block font-medium mb-1">Image de couverture</label>
+                <input type="file" id="image" accept="image/*" class="w-full p-2 border rounded">
+                <p class="text-xs text-gray-500 mt-1">Laissez vide pour utiliser une image par défaut.</p>
+            </div>
+            <div>
+                <label class="block font-medium mb-1">Contenu (Markdown / HTML) *</label>
+                <textarea id="content" rows="14" class="w-full p-2 border rounded font-mono text-sm" placeholder="# Titre&#10;&#10;Votre contenu ici..." required></textarea>
+            </div>
+            <div>
+                <label class="block font-medium mb-1">Résumé (optionnel)</label>
+                <textarea id="excerpt" rows="3" class="w-full p-2 border rounded" placeholder="Court résumé qui apparaîtra dans les listes d'articles..."></textarea>
+            </div>
+            <div>
+                <label class="block font-medium mb-1">Statut</label>
+                <select id="status" class="w-full p-2 border rounded">
+                    <option value="brouillon">📝 Brouillon</option>
+                    <option value="publie" selected>🚀 Publier directement</option>
+                </select>
+            </div>
+            <div class="flex gap-3 pt-4">
+                <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Publier l'article</button>
+                <button type="button" class="bg-gray-300 px-6 py-2 rounded hover:bg-gray-400">Annuler</button>
+            </div>
+        </form>
+    </main>
+</body>
+</html>

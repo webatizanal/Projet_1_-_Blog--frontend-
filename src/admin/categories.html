@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Catégories</title>
+    <link rel="stylesheet" href="/src/style.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pinyon+Script&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+    <header>
+        <div class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
+            <div class="text-2xl font-bold text-blue-600 tektur">Admin Blog</div>
+            <button id="logout-btn" class="text-red-500 hover:text-red-700">Déconnexion</button>
+        </div>
+
+        <div class="bg-gray-800 text-white py-3 px-6 flex justify-center gap-8">
+            <a href="/src/admin/users.html" class="hover:text-blue-400">Utilisateurs</a>
+            <a href="/src/admin/categories.html" class="hover:text-blue-400">Catégories</a>
+            <a href="/src/admin/all-articles.html" class="hover:text-blue-400">Articles</a>
+            <a href="/src/admin/drafts.html" class="hover:text-blue-400">Brouillons</a>
+        </div>        
+    </header>
+
+
+    <main class="max-w-4xl mx-auto py-10 px-4">
+        <h1 class="text-3xl font-bold mb-6">📂 Gérer les catégories</h1>
+
+        <!-- Liste des catégories -->
+        <div class="bg-white rounded-lg shadow overflow-hidden mb-8">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nom</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Slug</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Articles</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    <tr>
+                        <td class="px-6 py-4 text-sm text-gray-900">Tech</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">tech</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">12</td>
+                        <td class="px-6 py-4 text-sm">
+                            <button class="text-blue-600 hover:text-blue-800 mr-3">✏️</button>
+                            <button class="text-red-600 hover:text-red-800">🗑️</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 text-sm text-gray-900">Développement</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">dev</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">24</td>
+                        <td class="px-6 py-4 text-sm">
+                            <button class="text-blue-600 hover:text-blue-800 mr-3">✏️</button>
+                            <button class="text-red-600 hover:text-red-800">🗑️</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 text-sm text-gray-900">IA</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">ia</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">6</td>
+                        <td class="px-6 py-4 text-sm">
+                            <button class="text-blue-600 hover:text-blue-800 mr-3">✏️</button>
+                            <button class="text-red-600 hover:text-red-800">🗑️</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Formulaire d'ajout -->
+        <div class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-xl font-bold mb-4">➕ Ajouter une catégorie</h2>
+            <form id="add-category" class="flex flex-col sm:flex-row gap-3">
+                <input type="text" id="cat-name" placeholder="Nom de la catégorie" class="flex-1 p-2 border rounded focus:ring-2 focus:ring-blue-500" required>
+                <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Ajouter</button>
+            </form>
+            <p class="text-xs text-gray-500 mt-2">Le slug sera généré automatiquement.</p>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('add-category')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const nom = document.getElementById('cat-name').value;
+            alert(`Catégorie "${nom}" ajoutée (simulation)`);
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>

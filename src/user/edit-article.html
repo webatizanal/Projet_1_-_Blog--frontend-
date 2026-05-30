@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier l'article</title>
+    <link rel="stylesheet" href="/src/style.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pinyon+Script&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <header>
+        <div class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
+            <div class="text-2xl font-bold text-blue-600 tektur">MonBlog</div>
+            <div class="flex gap-4">
+                <span id="user-name" class="text-gray-700">User Name</span>
+                <button id="logout-btn" class="text-red-500">Déconnexion</button>
+            </div>
+        </div>
+
+        <div class="bg-gray-800 text-white py-3 px-6 flex justify-center gap-8">
+            <a href="/src/user/dashboard.html" class="hover:text-blue-400">Dashboard</a>
+            <a href="/src/user/create-article.html" class="hover:text-blue-400">Nouvel article</a>
+            <a href="/src/user/drafts.html" class="hover:text-blue-400">Brouillons</a>
+            <a href="/src/user/profile.html" class="hover:text-blue-400">Profil</a>
+        </div>         
+    </header>
+
+    <main class="max-w-4xl mx-auto py-10 px-4">
+        <h1 class="text-3xl font-bold mb-6">✏️ Modifier l'article</h1>
+        
+        <form id="edit-article-form" class="bg-white p-6 rounded-lg shadow space-y-5">
+            <input type="hidden" id="article-id" value="1">
+            <div>
+                <label class="block font-medium mb-1">Titre *</label>
+                <input type="text" id="title" value="Comprendre JavaScript" class="w-full p-2 border rounded" required>
+            </div>
+            <div>
+                <label class="block font-medium mb-1">Catégorie</label>
+                <select id="category" class="w-full p-2 border rounded">
+                    <option>Tech</option>
+                    <option selected>Développement</option>
+                    <option>IA</option>
+                </select>
+            </div>
+            <div>
+                <label class="block font-medium mb-1">Image actuelle</label>
+                <img src="https://picsum.photos/id/0/200/100" class="w-40 rounded mb-2">
+                <input type="file" id="image" accept="image/*" class="w-full p-2 border rounded">
+            </div>
+            <div>
+                <label class="block font-medium mb-1">Contenu *</label>
+                <textarea id="content" rows="12" class="w-full p-2 border rounded font-mono" required>JavaScript est un langage de programmation...</textarea>
+            </div>
+            <div>
+                <label class="block font-medium mb-1">Statut</label>
+                <select id="status" class="w-full p-2 border rounded">
+                    <option>brouillon</option>
+                    <option selected>publié</option>
+                </select>
+            </div>
+            <div class="flex gap-3 pt-4">
+                <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Mettre à jour</button>
+                <button type="button" onclick="history.back()" class="bg-gray-300 px-6 py-2 rounded hover:bg-gray-400">Annuler</button>
+            </div>
+        </form>
+    </main>
+
+    <script>
+        document.getElementById('edit-article-form')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Article modifié (simulation). Connectez votre backend.');
+        });
+    </script>
+</body>
+</html>

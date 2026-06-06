@@ -1,19 +1,235 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>front_blog</title>
-    <link rel="stylesheet" href="/src/style.css">   
-    <script type="module" src="/src/main.js"></script>
-
-    <script>
-        window.location.href = "src/public/index.html";
-        // Alternative : window.location.replace("nouveau-fichier.html");
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevEtDemain - Accueil</title>
+    <link rel="stylesheet" href="/src/style.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pinyon+Script&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+    <script type="module">
+        import { home } from './src/main.js';
+        home(); 
     </script>
-  </head>
-  <body>
-    <!-- Redirection automatique... -->
-  </body>
+    <script type="module" src="src/logique_front/fonctions/responsive.js"></script>
+    <link rel="icon" type="image/png" href="./src/assets/favicon.ico">
+</head>
+<body class="bg-gray-100"> 
+
+    <header class="h-fit">
+        <!-- ==================== PREMIÈRE NAVBAR ==================== -->
+        <div class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
+            <a href="/" class="hover:text-blue-400"><div class="text-2xl tektur font-bold text-blue-600">DevEtDemain</div></a>
+            <div class="flex gap-4 items-center">
+                <span class="md:border-2 md:border-gray-500 p-1 rounded-full md:w-30 cursor-pointer flex flex-row items-center text-xs   searchModal">
+                    <img src="src/assets/rechercher.png" alt="" class="w-6 h-6">
+                    <span class="hidden md:inline-block">Searching...</span>
+                </span>
+
+                <a href="#" class="text-gray-600 hover:text-blue-500">
+                    <img src="src/assets/facebook.png" alt="" class="w-5">
+                </a>
+                <a href="#" class="text-gray-600 hover:text-blue-500">
+                    <img src="src/assets/twitter.png" alt="" class="w-4">
+                </a>
+                <a href="#" class="text-gray-600 hover:text-blue-500">
+                    <img src="src/assets/instagram.png" alt="" class="w-4">
+                </a>
+                <a href="/src/public/login.html" class="bg-blue-600 text-white p-0.5 rounded-full hover:bg-blue-700 transition">
+                    <img src="src/assets/login.png" alt="" class="w-7 h-7 invert brightness-0">
+                </a>
+            </div>
+        </div>
+
+        <!-- ==================== DEUXIÈME NAVBAR ==================== -->
+        <div class="bg-gray-800 text-sm md:text-base text-white py-3 px-6 flex flex-wrap justify-center gap-6   navLink">
+            <a href="/" class=" border-b-2 ">Accueil</a>
+            <a href="/src/public/category.html?id=tech" class="hover:text-blue-400 hover:border-b-2">Catégories ›</a>
+            <a href="/src/public/about.html" class="hover:text-blue-400 hover:border-b-2">À propos</a>
+            <a href="/src/public/contact.html" class="hover:text-blue-400 hover:border-b-2">Contact</a>
+        </div>  
+        
+        <!-- ==================== ARTICLES À LA UNE ==================== -->
+        <section class="max-w-7xl mx-auto py-4 px-4 " >
+            <div id="featured-articles" class="grid grid-cols-1 md:grid-cols-4 gap-2 md:h-[75vh]      la_une_container-js">
+                <!-- les articles dynamiques -->
+            </div>
+        </section>
+    </header>
+
+
+    <!-- Structure de la modale -->
+    <div class="modal-overlay" id="modal_container-js"  style="display:none">
+        <div class="modal_box-js">
+            <div class="header_modal">
+                <h2>Resultats de votre recherche (<span class="result_of_searching-js">5</span>)</h2>
+                <button class="close-btn font-bold text-black text-center flex items-center justify-center p-0.5 h-8 w-8 bg-gray-400 rounded-full text-3xl" id="close-btn">&times;</button>
+            </div>
+
+            <div class="article_modal_container-js">
+                <!-- tous les article trouvées après la recherche, apparettront ici -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="bg-blue-600 text-white py-20 px-4 text-center">
+        <h1 class="text-5xl font-bold mb-4">Bienvenue sur DevEtDemain</h1>
+        <p class="text-xl mb-8 max-w-2xl mx-auto">Partagez vos idées, découvrez des articles inspirants et rejoignez une communauté passionnée.</p>
+        <a href="/src/public/register.html" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">Faire le premier pas</a>
+    </section>
+
+
+    <!-- ==================== CATÉGORIES POPULAIRES ==================== -->
+    <section class="bg-white py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-6 text-center"> Catégories populaires</h2>
+            <div class="flex flex-wrap justify-center gap-4 category_container-js">
+                <!-- toutes les categories ICI -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== DERNIERS ARTICLES (grille) ==================== -->
+    <section class="max-w-7xl mx-auto py-12 px-4">
+        <h2 class="text-3xl font-bold mb-6 border-l-4 border-blue-600 pl-4"> Derniers articles</h2>
+        <!-- Liste des articles -->
+        <div id="articles-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8   recent_article_container-js">
+            <!-- les articles recents ICI -->
+        </div>
+        <div class="text-center mt-8">
+            <a href="/src/public/archive.html" class="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">Voir tous les articles →</a>
+        </div>
+    </section>
+ 
+    <!-- ==================== NEWSLETTER ==================== -->
+    <section class="bg-gray-800 text-white py-16 px-4 text-center">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-3xl font-bold mb-4 flex items-center justify-center gap-2 invert brightness-0">
+                <img src="src/assets/enveloppe.png" alt="" class="hidden md:inline-block w-7">
+                <span> Ne ratez aucun article</span>
+            </h2>
+            <p class="mb-6">Inscrivez-vous à notre newsletter pour recevoir les derniers articles directement dans votre boîte mail.</p>
+            <form id="newsletter-form" class="flex flex-col sm:flex-row gap-4">
+                <input type="email" name="email" placeholder="Votre email" class="inletter flex-1 px-4 py-2 rounded border-2 border-white outline-0 text-white" required>
+                <button type="submit" class="bg-blue-600 px-6 py-2 rounded hover:bg-blue-700 transition">S'abonner</button>
+            </form>
+            <p class="text-sm text-gray-400 mt-4">Aucun spam, désinscription à tout moment.</p>
+        </div>
+    </section>
+
+    <!-- ==================== TÉMOIGNAGES ==================== -->
+    <section class="max-w-7xl mx-auto py-12 px-4">
+        <h2 class="text-3xl font-bold mb-6 text-center flex justify-center items-center gap-2">
+            <img src="src/assets/commentaires.png" alt="" class="w-7">
+            <span>Ce qu'ils disent</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6  comment_container-js">
+            <!-- comments -->
+        </div>
+    </section>
+
+    <!-- ==================== STATS (chiffres clés) ==================== -->
+    <section class="bg-blue-600 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 text-center gap-6">
+            <div>
+                <div class="text-4xl font-bold   articlesPub">150+</div>
+                <p>Articles publiés</p>
+            </div>
+            <div>
+                <div class="text-4xl font-bold   lecteurs">12k+</div>
+                <p>Lecteurs</p>
+            </div>
+            <div>
+                <div class="text-4xl font-bold   auteurs">25+</div>
+                <p>Auteurs</p>
+            </div>
+            <div>
+                <div class="text-4xl font-bold "><span class="noteMoyenne">4.8</span>★</div>
+                <p>Note moyenne</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PARTENAIRES ==================== -->
+    <section class="max-w-7xl mx-auto py-12 px-4">
+        <h2 class="text-2xl font-bold mb-6 text-center">Nos partenaires</h2>
+        <div class="partnership_container-js flex flex-wrap justify-center gap-8 transition">
+            <!-- les partenaires ici -->
+    </section>
+
+    <!-- ==================== FOOTER COMPLET ==================== -->
+    <footer class="bg-gray-900 text-gray-400 py-10">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <h3 class="text-white font-bold mb-4">DevEtDemain</h3>
+                <p class="text-sm">Un espace pour apprendre, partager et grandir ensemble dans le monde du développement web.</p>
+            </div>
+            <div>
+                <h3 class="text-white font-bold mb-4">Liens rapides</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="/" class="hover:text-white">Accueil</a></li>
+                    <li><a href="/src/public/category.html" class="hover:text-white">Catégories</a></li>
+                    <li><a href="/src/public/about.html" class="hover:text-white">À propos</a></li>
+                    <li><a href="/src/public/contact.html" class="hover:text-white">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-white font-bold mb-4">Suivez-nous</h3>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:text-white">Facebook</a>
+                    <a href="#" class="hover:text-white">Twitter</a>
+                    <a href="#" class="hover:text-white">Instagram</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-white font-bold mb-4">Mentions légales</h3>
+                <p class="text-sm">© 2025 DevEtDemain - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Definition des templates -->
+    <template id="la_une_article-js">
+        <a href="/src/public/article.html" class=" rounded-lg la_une_article-js" >
+            <div class=" bg-white shadow overflow-hidden relative w-full h-full " >
+                <img src="src/assets/article4.jpg" alt="Article 1" class="w-full h-full  object-cover ">
+                <div class="p-3 absolute text-white bottom-0 z-50  flex flex-col gap-0.5-0.5">
+                    <h3 class="text-base font-bold ">Titre de l'article principal</h3>
+                    <p class="text-gray-200 text-sm  resume">Résumé captivant de l'article pour donner envie de cliquer...</p>
+                </div>
+            </div>                    
+        </a>    
+    </template>
+
+    <template id="category_element-js">
+        <a href="/src/public/category.html?id=ia" class="bg-gray-200 hover:bg-blue-600 hover:text-white px-6 py-3 rounded-full transition">🧠 IA</a>
+    </template>
+
+    <template id="recent_article_element-js">
+        <div class="bg-white rounded-lg shadow-md overflow-hidden    recent_article_element">
+            <img src="https://picsum.photos/id/0/400/250" alt="Article tech" class="w-full h-48 object-cover">
+            <div class="p-5">
+                <div class="text-xs text-blue-600 font-semibold mb-2"><span class="cat">Tech • </span> <span class="readTime">15</span> de lecture</div>
+                <h2 class="text-xl font-bold mb-2">Les tendances tech 2025</h2>
+                <p class="text-gray-600 mb-4 resume">Découvrez ce qui va marquer l'industrie cette année...</p>
+                <a href="/src/public/article.html?id=1" class="text-blue-600 font-medium hover:underline">Lire l'article →</a>
+            </div>
+        </div>
+    </template>
+
+    <template  id="comment_element-js">
+        <div class="bg-white p-6 rounded-lg shadow text-center">
+            <p class="text-gray-600 italic    message">"J'ai beaucoup appris grâce aux tutoriels et aux échanges."</p>
+            <p class="font-bold mt-4     auteur">Thomas Edison</p>
+        </div>
+    </template>
+
+    <template id="partnership_element-js">
+        <div class="partner flex flex-col gap-2 justify-center items-center">
+            <img src="./src/assets/article4.jpg" alt="" class="w-20 object-cover h-20 rounded-full m-2">
+            <span class="text-gray-500 font-bold  name">Partenaire 1</span>
+        </div>
+    </template>
+</body>
 </html>

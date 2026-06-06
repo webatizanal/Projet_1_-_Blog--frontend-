@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Mon Blog</title>
     <link rel="stylesheet" href="/src/style.css"> 
+    <link rel="icon" type="image/png" href="../assets/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pinyon+Script&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
@@ -12,31 +13,57 @@
     <header class="h-fit">
         <!-- ==================== PREMIÈRE NAVBAR ==================== -->
         <div class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
-            <a href="/src/public/index.html" class="hover:text-blue-400"><div class="text-2xl font-bold text-blue-600 tektur">🍃 MonBlog</div></a>
+            <a href="/" class="hover:text-blue-400"><div class="text-2xl tektur font-bold text-blue-600">DevEtDemain</div></a>
             <div class="flex gap-4 items-center">
-                <img src="../assets/rechercher.png" alt="" class="w-6 h-6">
-                <a href="#" class="text-gray-600 hover:text-blue-500">FB</a>
-                <a href="#" class="text-gray-600 hover:text-blue-500">X</a>
-                <a href="#" class="text-gray-600 hover:text-blue-500">IG</a>
-                <a href="/src/public/login.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Connexion</a>
+                <span class="md:border-2 md:border-gray-500 p-1 rounded-full md:w-30 cursor-pointer flex flex-row items-center text-xs   searchModal">
+                    <img src="../assets/rechercher.png" alt="" class="w-6 h-6">
+                    <span class="hidden md:inline-block">Searching...</span>
+                </span>
+
+                <a href="#" class="text-gray-600 hover:text-blue-500">
+                    <img src="../assets/facebook.png" alt="" class="w-5">
+                </a>
+                <a href="#" class="text-gray-600 hover:text-blue-500">
+                    <img src="../assets/twitter.png" alt="" class="w-4">
+                </a>
+                <a href="#" class="text-gray-600 hover:text-blue-500">
+                    <img src="../assets/instagram.png" alt="" class="w-4">
+                </a>
+                <a href="/src/public/login.html" class="bg-blue-600 text-white p-0.5 rounded-full hover:bg-blue-700 transition">
+                    <img src="../assets/login.png" alt="" class="w-7 h-7 invert brightness-0">
+                </a>
             </div>
         </div>
 
         <!-- ==================== DEUXIÈME NAVBAR ==================== -->
-        <div class="bg-gray-800 text-white py-3 px-6 flex flex-wrap justify-center gap-6">
-            <a href="/src/public/index.html" class="hover:text-blue-400">Accueil</a>
-            <a href="/src/public/category.html?id=tech" class="hover:text-blue-400">Catégories ›</a>
-            <a href="/src/public/about.html" class="hover:text-blue-400">À propos</a>
-            <a href="/src/public/contact.html" class="hover:text-blue-400">Contact</a>
-        </div>  
+        <div class="bg-gray-800 text-sm md:text-base text-white py-3 px-6 flex flex-wrap justify-center gap-6   navLink">
+            <a href="/" class="hover:text-blue-400 hover:border-b-2">Accueil</a>
+            <a href="/src/public/category.html?id=tech" class="hover:text-blue-400 hover:border-b-2 ">Catégories ›</a>
+            <a href="/src/public/about.html" class="hover:text-blue-400 hover:border-b-2">À propos</a>
+            <a href="/src/public/contact.html" class="border-b-2">Contact</a>
+        </div> 
     </header>
+
+    <!-- Structure de la modale -->
+    <div class="modal-overlay" id="modal_container-js"  style="display:none">
+        <div class="modal_box-js">
+            <div class="header_modal">
+                <h2>Resultats de votre recherche (<span class="result_of_searching-js">5</span>)</h2>
+                <button class="close-btn font-bold text-black text-center flex items-center justify-center p-0.5 h-8 w-8 bg-gray-400 rounded-full text-3xl" id="close-btn">&times;</button>
+            </div>
+
+            <div class="article_modal_container-js">
+                <!-- tous les article trouvées après la recherche, apparettront ici -->
+            </div>
+        </div>
+    </div>
 
     <main class="max-w-4xl mx-auto py-10 px-4">
         <h1 class="text-3xl font-bold mb-6">Contactez-nous</h1>
-        <form id="contact-form" class="bg-white p-6 rounded shadow">
-            <input type="text" placeholder="Votre nom" class="w-full mb-4 p-2 border rounded">
-            <input type="email" placeholder="Votre email" class="w-full mb-4 p-2 border rounded">
-            <textarea placeholder="Votre message" rows="5" class="w-full mb-4 p-2 border rounded"></textarea>
+        <form method="post" action="https://formsubmit.co/gedeonkenwood.com" id="contact-form" class="bg-white p-6 rounded shadow">
+            <input type="text" name="name" placeholder="Votre nom" class="w-full mb-4 p-2 border rounded">
+            <input type="email" name="email" placeholder="Votre email" class="w-full mb-4 p-2 border rounded">
+            <textarea name="message" placeholder="Votre message" rows="5" class="w-full mb-4 p-2 border rounded"></textarea>
             <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Envoyer</button>
         </form>
     </main>

@@ -5,16 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Utilisateurs</title>
     <link rel="stylesheet" href="/src/style.css"> 
+    <link rel="icon" type="image/png" href="../assets/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pinyon+Script&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+    <script type="module">
+        import { users } from '../userAdmin.js';
+        users();
+    </script>
 </head>
 <body class="bg-gray-100">
 
     <header>
         <div class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
-            <div class="text-2xl font-bold text-blue-600 tektur">Admin Blog</div>
-            <button id="logout-btn" class="text-red-500 hover:text-red-700">Déconnexion</button>
-        </div>
-
+            <div class="text-2xl font-bold text-blue-600 tektur">DevEtDemain</div>
+            <div class="flex gap-4">
+                <span id="user-name" class="text-gray-700  username ">User Name</span>
+                <button id="logout-btn" class="text-red-500   logout">
+                    <img src="../assets/logout.png" alt="" class="w-5">
+                </button>
+            </div>
+        </div> 
+ 
         <div class="bg-gray-800 text-white py-3 px-6 flex justify-center gap-8">
             <a href="/src/admin/users.html" class="hover:text-blue-400">Utilisateurs</a>
             <a href="/src/admin/categories.html" class="hover:text-blue-400">Catégories</a>
@@ -51,7 +61,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">alex@monblog.com</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">alex@DevEtDemain.com</td>
                         <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs rounded-full bg-red-100 text-red-800">admin</span></td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">24 articles</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">01/01/2024</td>
@@ -101,10 +111,6 @@
         </div>
     </main>
 
-    <script>
-        document.getElementById('logout-btn')?.addEventListener('click', () => {
-            alert('Déconnexion (à connecter avec votre backend)');
-        });
-    </script>
+
 </body>
 </html>

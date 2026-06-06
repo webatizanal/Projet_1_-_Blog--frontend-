@@ -5,239 +5,159 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Article - Mon Blog</title>
     <link rel="stylesheet" href="/src/style.css"> 
+    <link rel="icon" type="image/png" href="../assets/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pinyon+Script&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+    <script type="module" src="../logique_front/classes/Reading.js"></script>
 </head>
 <body class="bg-gray-100">
-
     <header class="h-fit">
         <!-- ==================== PREMIÈRE NAVBAR ==================== -->
         <div class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
-            <a href="/src/public/index.html" class="hover:text-blue-400"><div class="text-2xl font-bold text-blue-600 tektur">🍃 MonBlog</div></a>
+            <a href="/" class="hover:text-blue-400"><div class="text-2xl tektur font-bold text-blue-600">DevEtDemain</div></a>
             <div class="flex gap-4 items-center">
-                <img src="../assets/rechercher.png" alt="" class="w-6 h-6">
-                <a href="#" class="text-gray-600 hover:text-blue-500">FB</a>
-                <a href="#" class="text-gray-600 hover:text-blue-500">X</a>
-                <a href="#" class="text-gray-600 hover:text-blue-500">IG</a>
-                <a href="/src/public/login.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Connexion</a>
+                <span class="md:border-2 md:border-gray-500 p-1 rounded-full md:w-30 cursor-pointer flex flex-row items-center text-xs   searchModal">
+                    <img src="../assets/rechercher.png" alt="" class="w-6 h-6">
+                    <span class="hidden md:inline-block">Searching...</span>
+                </span>
+
+                <a href="#" class="text-gray-600 hover:text-blue-500">
+                    <img src="../assets/facebook.png" alt="" class="w-5">
+                </a>
+                <a href="#" class="text-gray-600 hover:text-blue-500">
+                    <img src="../assets/twitter.png" alt="" class="w-4">
+                </a>
+                <a href="#" class="text-gray-600 hover:text-blue-500">
+                    <img src="../assets/instagram.png" alt="" class="w-4">
+                </a>
+                <a href="/src/public/login.html" class="bg-blue-600 text-white p-0.5 rounded-full hover:bg-blue-700 transition">
+                    <img src="../assets/login.png" alt="" class="w-7 h-7 invert brightness-0">
+                </a>
             </div>
         </div>
 
         <!-- ==================== DEUXIÈME NAVBAR ==================== -->
-        <div class="bg-gray-800 text-white py-3 px-6 flex flex-wrap justify-center gap-6">
-            <a href="/src/public/index.html" class="hover:text-blue-400">Accueil</a>
-            <a href="/src/public/category.html?id=tech" class="hover:text-blue-400">Catégories ›</a>
-            <a href="/src/public/about.html" class="hover:text-blue-400">À propos</a>
-            <a href="/src/public/contact.html" class="hover:text-blue-400">Contact</a>
-        </div>  
+        <div class="bg-gray-800 text-sm md:text-base text-white py-3 px-6 flex flex-wrap justify-center gap-6   navLink">
+            <a href="/" class="hover:text-blue-400 hover:border-b-2">Accueil</a>
+            <a href="/src/public/category.html?id=tech" class="hover:text-blue-400 hover:border-b-2 ">Catégories ›</a>
+            <a href="/src/public/about.html" class="hover:text-blue-400 hover:border-b-2">À propos</a>
+            <a href="/src/public/contact.html" class="hover:text-blue-400 border-b-2 border-transparent hover:border-blue-400">Contact</a>
+        </div> 
     </header>
 
-    <!-- ARTICLE PRINCIPAL -->
+    <!-- Structure de la modale -->
+    <div class="modal-overlay" id="modal_container-js"  style="display:none">
+        <div class="modal_box-js">
+            <div class="header_modal">
+                <h2>Resultats de votre recherche (<span class="result_of_searching-js">5</span>)</h2>
+                <button class="close-btn font-bold text-black text-center flex items-center justify-center p-0.5 h-8 w-8 bg-gray-400 rounded-full text-3xl" id="close-btn">&times;</button>
+            </div>
+
+            <div class="article_modal_container-js">
+                <!-- tous les article trouvées après la recherche, apparettront ici -->
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- ARTICLE PRINCIPAL   (.article-content) -->
     <main class="max-w-4xl mx-auto py-8 px-4">
         <!-- Fil d'Ariane -->
         <div class="text-sm text-gray-500 mb-4">
-            <a href="/src/public/index.html" class="hover:text-blue-600">Accueil</a> / 
-            <a href="/src/public/category.html?id=dev" class="hover:text-blue-600">Développement</a> / 
-            <span class="text-gray-700">Comprendre JavaScript</span>
+            <a href="/" class="hover:text-blue-600">Accueil</a> / 
+            <a href="/src/public/category.html" class="hover:text-blue-600    category-js"></a> / 
+            <span class="text-gray-700   title-js"></span>
         </div>
 
         <!-- EN-TÊTE -->
         <div class="mb-6">
-            <div class="flex gap-2 mb-3">
-                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Développement web</span>
-                <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">JavaScript</span>
-                <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Débutant</span>
+            <div class="flex gap-2 mb-3  tag_container-js">
+                <!-- Les tags --> 
             </div>
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Comprendre JavaScript : Les bases essentielles pour débuter</h1>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4  bigTitle-js"></h1>
             <div class="flex flex-wrap items-center gap-4 text-gray-500 mb-6">
-                <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center text-sm">👤</div>
-                    <span>Par <strong>Alex Martin</strong></span>
-                </div>
-                <span>📅 15 mars 2025</span>
-                <span>⏱️ 12 min de lecture</span>
-                <span>👁️ 1 234 vues</span>
+                <p class="reading">
+                    <span>Par <strong class="auteur-js">Alex Martin</strong></span>
+                    <strong class="px-2">   ||   </strong>
+                    <span class="date-js">15 mars 2025  </span>
+                    <strong class="px-2">   ||   </strong>
+                    <span class="reaTime-js">12</span> min de lecture
+                    <strong class="px-2">   ||   </strong>
+                    <span class="views-js">1 234</span> vues
+                </p>
+
             </div>
         </div>
 
         <!-- IMAGE DE COUVERTURE -->
-        <img src="https://picsum.photos/id/0/1200/600" alt="JavaScript illustration" class="w-full rounded-lg shadow-md mb-8">
+        <img src="https://picsum.photos/id/0/1200/600" alt="JavaScript illustration" class="cover-js w-full rounded-lg shadow-md mb-8">
 
-        <!-- SOMMAIRE (ancres) -->
-        <div class="bg-gray-50 p-6 rounded-lg mb-8 border">
-            <h3 class="text-lg font-bold mb-3">📑 Sommaire</h3>
-            <ul class="space-y-2 text-blue-600">
-                <li><a href="#intro" class="hover:underline">1. Introduction à JavaScript</a></li>
-                <li><a href="#variables" class="hover:underline">2. Les variables (var, let, const)</a></li>
-                <li><a href="#fonctions" class="hover:underline">3. Les fonctions</a></li>
-                <li><a href="#conditions" class="hover:underline">4. Conditions et boucles</a></li>
-                <li><a href="#conclusion" class="hover:underline">5. Conclusion</a></li>
-            </ul>
-        </div>
+
+        <hr class="my-5">
 
         <!-- CONTENU DE L'ARTICLE -->
-        <div class="article-content prose prose-lg max-w-none">
-            <section id="intro">
-                <h2>1. Introduction à JavaScript</h2>
-                <p>JavaScript est un langage de programmation qui permet de rendre les pages web interactives. Créé en 1995, il est devenu incontournable pour le développement front-end, mais aussi back-end grâce à Node.js.</p>
-                <p>Contrairement à ce qu'on pense souvent, JavaScript n'a aucun rapport avec le langage Java. Son nom a été choisi pour des raisons marketing. Aujourd'hui, c'est l'un des langages les plus populaires au monde.</p>
-                <blockquote>« JavaScript est le langage du web. Si vous voulez créer des applications interactives, vous DEVEZ le maîtriser. » — Kyle Simpson</blockquote>
-            </section>
-
-            <section id="variables">
-                <h2>2. Les variables (var, let, const)</h2>
-                <p>En JavaScript, on déclare des variables avec <code>let</code>, <code>const</code> ou <code>var</code>.</p>
-                <pre><code>// Avec let (mutable)
-let age = 25;
-age = 26; // OK
-
-// Avec const (immuable)
-const nom = "Jean";
-nom = "Pierre"; // ❌ Erreur
-
-// var (à éviter)
-var ancienne = "déprécié";</code></pre>
-                <p><strong>Règle d'or :</strong> Utilisez <code>const</code> par défaut, et <code>let</code> quand la variable doit changer. Fuyez <code>var</code>.</p>
-            </section>
-
-            <section id="fonctions">
-                <h2>3. Les fonctions</h2>
-                <p>JavaScript propose plusieurs façons d'écrire des fonctions.</p>
-                <pre><code>// Déclaration classique
-function direBonjour(nom) {
-    return `Bonjour ${nom}`;
-}
-
-// Expression de fonction
-const direAuRevoir = function(nom) {
-    return `Au revoir ${nom}`;
-};
-
-// Fonction fléchée (moderne)
-const direSalut = (nom) => `Salut ${nom}`;</code></pre>
-                <p>Les fonctions fléchées sont plus courtes et ne redéfinissent pas le mot-clé <code>this</code>, ce qui évite certains bugs.</p>
-            </section>
-
-            <section id="conditions">
-                <h2>4. Conditions et boucles</h2>
-                <h3>Conditions</h3>
-                <pre><code>const age = 18;
-
-if (age >= 18) {
-    console.log("Majeur");
-} else {
-    console.log("Mineur");
-}</code></pre>
-                <h3>Boucles</h3>
-                <pre><code>// for classique
-for (let i = 0; i < 5; i++) {
-    console.log(i);
-}
-
-// forEach sur tableau
-const fruits = ["pomme", "banane", "orange"];
-fruits.forEach(fruit => console.log(fruit));</code></pre>
-                <p><strong>💡 Astuce :</strong> Privilégiez <code>map()</code>, <code>filter()</code> et <code>reduce()</code> pour manipuler des tableaux plutôt que <code>for</code>.</p>
-            </section>
-
-            <section id="conclusion">
-                <h2>5. Conclusion</h2>
-                <p>JavaScript est un langage vaste mais extrêmement gratifiant. En maîtrisant les bases (variables, fonctions, conditions, boucles), vous pourrez déjà créer des interactions simples sur vos pages web.</p>
-                <p>Prochaines étapes : manipuler le DOM, les événements, les promesses et async/await.</p>
-                <p>N’hésitez pas à pratiquer en faisant des petits projets : une calculatrice, un générateur de citations, ou une to-do list.</p>
-            </section>
+        <div class="article-content  content-js prose prose-lg max-w-none">
+            <!-- tout le contenu de l'article en HTML -->
         </div>
 
-        <!-- PARTAGE SOCIAL -->
-        <div class="border-t border-b py-6 my-8">
-            <p class="font-semibold mb-3">Partager cet article :</p>
-            <div class="flex gap-3">
-                <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Facebook</a>
-                <a href="#" class="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800">Twitter</a>
-                <a href="#" class="bg-blue-400 text-white px-4 py-2 rounded-lg hover:bg-blue-500">LinkedIn</a>
-            </div>
-        </div>
+        <hr class="my-5">
 
         <!-- AUTEUR -->
         <div class="bg-gray-50 p-6 rounded-lg flex flex-col md:flex-row gap-6 items-center mb-10">
-            <div class="w-24 h-24 bg-gray-400 rounded-full flex items-center justify-center text-3xl">👨‍💻</div>
+            <div >
+                <img src="../assets/article4.jpg" alt="" class="w-32 h-32 rounded-full object-cover">
+            </div>
             <div class="flex-1 text-center md:text-left">
-                <h3 class="text-xl font-bold mb-2">Alex Martin</h3>
-                <p class="text-gray-600 mb-3">Développeur full-stack passionné par le web moderne. J'écris des tutoriels et des articles pour aider les débutants à progresser.</p>
-                <a href="#" class="text-blue-600 hover:underline">Voir tous ses articles →</a>
+                <h3 class="text-xl font-bold mb-2  name-js">Alex Martin</h3>
+                <p class="text-gray-600 mb-3  bio-js">Développeur full-stack passionné par le web moderne. J'écris des tutoriels et des articles pour aider les débutants à progresser.</p>
+                <a href="./category.html" class="text-blue-600 hover:underline  ">Voir tous ses articles →</a>
             </div>
         </div>
 
-        <!-- ARTICLES SIMILAIRES -->
-        <div class="mb-10">
-            <h2 class="text-2xl font-bold mb-6">📖 Articles similaires</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white rounded-lg shadow overflow-hidden">
-                    <img src="https://picsum.photos/id/1/400/200" alt="Article similaire" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="font-bold mb-2">Les promesses en JavaScript</h3>
-                        <p class="text-sm text-gray-600 mb-2">Apprenez à gérer l'asynchrone comme un pro.</p>
-                        <a href="#" class="text-blue-600 text-sm hover:underline">Lire →</a>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow overflow-hidden">
-                    <img src="https://picsum.photos/id/2/400/200" alt="Article similaire" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="font-bold mb-2">Manipuler le DOM avec JavaScript</h3>
-                        <p class="text-sm text-gray-600 mb-2">Tout ce qu'il faut savoir pour interagir avec la page.</p>
-                        <a href="#" class="text-blue-600 text-sm hover:underline">Lire →</a>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow overflow-hidden">
-                    <img src="https://picsum.photos/id/3/400/200" alt="Article similaire" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="font-bold mb-2">Node.js : Démarrer un serveur</h3>
-                        <p class="text-sm text-gray-600 mb-2">Créez votre première API en 10 minutes.</p>
-                        <a href="#" class="text-blue-600 text-sm hover:underline">Lire →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <!-- COMMENTAIRES -->
         <div class="mb-10">
-            <h2 class="text-2xl font-bold mb-6">💬 Commentaires (3)</h2>
+            <h2 class="text-3xl font-bold mb-4 flex items-center justify-center gap-2">
+                <img src="../assets/commentaires.png" alt="" class="w-7">
+                <span>Commentaires</span>
+            </h2>
             <!-- Liste des commentaires -->
-            <div class="space-y-6 mb-8">
-                <div class="bg-white p-4 rounded-lg shadow">
-                    <div class="flex items-center gap-3 mb-2">
-                        <div class="w-8 h-8 bg-gray-300 rounded-full"></div>
-                        <div><span class="font-bold">Marie Dupont</span> <span class="text-sm text-gray-500">2 jours ago</span></div>
+            <div class="space-y-6 mb-8 max-h-60 overflow-y-scroll custom-scrollbar   comment_container-js">
+                <template id="comment_element-js">
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-10 h-10 bg-gray-300 rounded-full">
+                                <img src="..." alt="" class="avatar   w-10 h-10 object-cover rounded-full">
+                            </div>
+                            <div><span class="font-bold user_comment-js">Marie Dupont</span> <span class="text-sm text-gray-500 comment_date-js">2 jours ago</span></div>
+                        </div>
+                        <p class="text-gray-700  message_comment-js">Merci pour cet article super clair ! Les explications sont accessibles même pour un débutant. J'attends la suite avec impatience.</p>
                     </div>
-                    <p class="text-gray-700">Merci pour cet article super clair ! Les explications sont accessibles même pour un débutant. J'attends la suite avec impatience.</p>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow">
-                    <div class="flex items-center gap-3 mb-2">
-                        <div class="w-8 h-8 bg-gray-300 rounded-full"></div>
-                        <div><span class="font-bold">Jean Lefebvre</span> <span class="text-sm text-gray-500">5 jours ago</span></div>
-                    </div>
-                    <p class="text-gray-700">Une petite faute à la section 4, mais sinon c'est parfait. Continuez comme ça !</p>
-                </div>
+                </template>
             </div>
+
+
             <!-- Formulaire d'ajout de commentaire -->
-            <div class="bg-gray-50 p-6 rounded-lg">
+            <div class="bg-gray-50 p-6 rounded-lg ">
                 <h3 class="text-lg font-bold mb-4">Laisser un commentaire</h3>
-                <form id="comment-form">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <input type="text" placeholder="Votre nom" class="p-2 border rounded-lg" required>
-                        <input type="email" placeholder="Votre email" class="p-2 border rounded-lg" required>
-                    </div>
-                    <textarea rows="4" placeholder="Votre commentaire..." class="w-full p-2 border rounded-lg mb-4" required></textarea>
+                <form id="comment-form" class="flex flex-col justify-center items-start">
+                    <textarea name="content" rows="4" placeholder="Votre commentaire..." class="w-full p-2 border rounded-lg mb-4" required></textarea>
+                    <span class="p-1 rounded bg-blue-100 text-blue-700 mb-3"><strong>Nb: </strong>Il faut être authentifié pour pouvoir commenter cet article ! <a href="./login.html" class="underline font-bold">login</a></span>
                     <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">Publier le commentaire</button>
                 </form>
             </div>
         </div>
 
         <!-- NEWSLETTER -->
-        <div class=" text-white p-8 rounded-lg text-center">
-            <h2 class="text-2xl font-bold mb-3">📧 Ne ratez aucun article</h2>
+        <div class="bg-gray-700 text-white p-8 rounded-lg text-center">
+            <h2 class="text-3xl font-bold mb-4 flex items-center justify-center gap-2 invert brightness-0">
+                <img src="../assets/enveloppe.png" alt="" class="hidden md:inline-block w-7">
+                <span> Ne ratez aucun article</span>
+            </h2>
             <p class="mb-5">Inscrivez-vous à la newsletter pour recevoir les prochains articles directement dans votre boîte mail.</p>
-            <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                <input type="email" placeholder="Votre email" class="flex-1 p-2 rounded text-gray-900" required>
+            <form id="formNewsLertter" class=" flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                <input name="email" type="email" placeholder="Votre email" class="flex-1 p-2 rounded border border-white outline-0 text-gray-200" required>
                 <button type="submit" class="bg-white text-blue-600 px-6 py-2 rounded hover:bg-gray-100 font-semibold">S'abonner</button>
             </form>
         </div>
@@ -246,7 +166,7 @@ fruits.forEach(fruit => console.log(fruit));</code></pre>
     <!-- FOOTER -->
     <footer class="bg-gray-900 text-gray-400 py-10 mt-12">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <p>© 2025 MonBlog - Tous droits réservés</p>
+            <p>© 2025 DevEtDemain - Tous droits réservés</p>
         </div>
     </footer>
 </body>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Créer un article</title>
     <link rel="stylesheet" href="/src/style.css"> 
+    <link rel="icon" type="image/png" href="../assets/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pinyon+Script&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
@@ -28,6 +29,185 @@
     <main class="max-w-4xl mx-auto py-10 px-4">
         <h1 class="text-3xl font-bold mb-6">✍️ Créer un article (admin)</h1>
         
+        <!-- INDICATIONS MARKDOWN -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-6">
+            <!-- En-tête avec gradient -->
+            <div class="bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-4">
+                <h3 class="text-white font-bold text-lg flex items-center gap-2">
+                    <span class="text-2xl">📝</span> 
+                    Formatage Markdown (10 secondes pour apprendre)
+                </h3>
+                <p class="text-blue-100 text-sm mt-1">Écrivez comme sur WhatsApp, on s'occupe du reste !</p>
+            </div>
+
+            <!-- Tableau responsive -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead class="bg-gray-50 border-b border-gray-200">
+                        <tr>
+                            <th class="text-left px-6 py-3 font-semibold text-gray-700">Pour faire...</th>
+                            <th class="text-left px-6 py-3 font-semibold text-gray-700">Écrire...</th>
+                            <th class="text-left px-6 py-3 font-semibold text-gray-700">Résultat</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <!-- Titre principal -->
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-3 font-medium text-gray-700">Gros titre</td>
+                            <td class="px-6 py-3"><code class="bg-gray-100 px-2 py-1 rounded text-sm text-blue-600"># Mon titre</code></td>
+                            <td class="px-6 py-3"><span class="text-lg font-bold">Mon titre</span></td>
+                        </tr>
+
+                        <!-- Sous-titre -->
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-3 font-medium text-gray-700">Sous-titre</td>
+                            <td class="px-6 py-3"><code class="bg-gray-100 px-2 py-1 rounded text-sm text-blue-600">## Mon sous-titre</code></td>
+                            <td class="px-6 py-3"><span class="text-base font-semibold">Mon sous-titre</span></td>
+                        </tr>
+
+                        <!-- Gras -->
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-3 font-medium text-gray-700">Texte en <strong>gras</strong></td>
+                            <td class="px-6 py-3"><code class="bg-gray-100 px-2 py-1 rounded text-sm text-blue-600">**texte**</code> ou <code class="bg-gray-100 px-2 py-1 rounded text-sm text-blue-600">__texte__</code></td>
+                            <td class="px-6 py-3"><strong>texte</strong></td>
+                        </tr>
+
+                        <!-- Italique -->
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-3 font-medium text-gray-700">Texte en <em>italique</em></td>
+                            <td class="px-6 py-3"><code class="bg-gray-100 px-2 py-1 rounded text-sm text-blue-600">*texte*</code> ou <code class="bg-gray-100 px-2 py-1 rounded text-sm text-blue-600">_texte_</code></td>
+                            <td class="px-6 py-3"><em>texte</em></td>
+                        </tr>
+
+                        <!-- Barré -->
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-3 font-medium text-gray-700">Texte <del>barré</del></td>
+                            <td class="px-6 py-3"><code class="bg-gray-100 px-2 py-1 rounded text-sm text-blue-600">~~texte~~</code></td>
+                            <td class="px-6 py-3"><del>texte</del></td>
+                        </tr>
+
+                        <!-- Code en ligne -->
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-3 font-medium text-gray-700">Code (1 ligne)</td>
+                            <td class="px-6 py-3"><code class="bg-gray-100 px-2 py-1 rounded text-sm text-blue-600">`var x = 10;`</code></td>
+                            <td class="px-6 py-3"><code class="bg-gray-100 px-2 py-0.5 rounded text-sm">var x = 10;</code></td>
+                        </tr>
+
+                        <!-- Bloc de code -->
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-3 font-medium text-gray-700">Bloc de code (plusieurs lignes)</td>
+                            <td class="px-6 py-3">
+                                <code class="bg-gray-100 px-2 py-1 rounded text-sm text-blue-600 whitespace-pre">```javascript<br>let x = 10;<br>console.log(x);<br>```</code>
+                            </td>
+                            <td class="px-6 py-3">
+                                <div class="bg-gray-900 text-gray-100 px-3 py-2 rounded text-xs font-mono">
+                                    let x = 10;<br>
+                                    console.log(x);
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Lien -->
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-3 font-medium text-gray-700">Lien hypertexte</td>
+                            <td class="px-6 py-3"><code class="bg-gray-100 px-2 py-1 rounded text-sm text-blue-600">[Mon blog](https://DevEtDemain.com)</code></td>
+                            <td class="px-6 py-3"><a href="#" class="text-blue-600 hover:underline">Mon blog</a></td>
+                        </tr>
+
+                        <!-- Image -->
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-3 font-medium text-gray-700">Image</td>
+                            <td class="px-6 py-3"><code class="bg-gray-100 px-2 py-1 rounded text-sm text-blue-600">![Description](image.jpg)</code></td>
+                            <td class="px-6 py-3">
+                                <div class="w-16 h-10 bg-gray-200 rounded flex items-center justify-center text-xs text-gray-500">Image</div>
+                            </td>
+                        </tr>
+
+                        <!-- Liste à puces -->
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-3 font-medium text-gray-700">Liste à puces</td>
+                            <td class="px-6 py-3">
+                                <code class="bg-gray-100 px-2 py-1 rounded text-sm text-blue-600 block">- Élément 1</code>
+                                <code class="bg-gray-100 px-2 py-1 rounded text-sm text-blue-600 block mt-1">- Élément 2</code>
+                            </td>
+                            <td class="px-6 py-3">
+                                <ul class="list-disc list-inside text-gray-700">
+                                    <li>Élément 1</li>
+                                    <li>Élément 2</li>
+                                </ul>
+                            </td>
+                        </tr>
+
+                        <!-- Liste numérotée -->
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-3 font-medium text-gray-700">Liste numérotée</td>
+                            <td class="px-6 py-3">
+                                <code class="bg-gray-100 px-2 py-1 rounded text-sm text-blue-600 block">1. Premier</code>
+                                <code class="bg-gray-100 px-2 py-1 rounded text-sm text-blue-600 block mt-1">2. Deuxième</code>
+                            </td>
+                            <td class="px-6 py-3">
+                                <ol class="list-decimal list-inside text-gray-700">
+                                    <li>Premier</li>
+                                    <li>Deuxième</li>
+                                </ol>
+                            </td>
+                        </tr>
+
+                        <!-- Citation -->
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-3 font-medium text-gray-700">Citation</td>
+                            <td class="px-6 py-3"><code class="bg-gray-100 px-2 py-1 rounded text-sm text-blue-600">&gt; Ceci est une citation</code></td>
+                            <td class="px-6 py-3">
+                                <blockquote class="border-l-4 border-gray-300 pl-4 text-gray-600 italic">
+                                    Ceci est une citation
+                                </blockquote>
+                            </td>
+                        </tr>
+
+                        <!-- Ligne horizontale -->
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-3 font-medium text-gray-700">Ligne de séparation</td>
+                            <td class="px-6 py-3"><code class="bg-gray-100 px-2 py-1 rounded text-sm text-blue-600">---</code> ou <code class="bg-gray-100 px-2 py-1 rounded text-sm text-blue-600">***</code></td>
+                            <td class="px-6 py-3">
+                                <hr class="border-gray-300">
+                            </td>
+                        </tr>
+
+                        <!-- Tableau (bonus) -->
+                        <tr class="hover:bg-gray-50 transition-colors bg-blue-50">
+                            <td class="px-6 py-3 font-medium text-gray-700">Tableau</td>
+                            <td class="px-6 py-3">
+                                <code class="bg-gray-100 px-2 py-1 rounded text-sm text-blue-600 whitespace-pre">| Nom | Age |<br>|-----|-----|<br>| Jean | 25 |<br>| Marie | 30 |</code>
+                            </td>
+                            <td class="px-6 py-3">
+                                <table class="text-xs border border-gray-200">
+                                    <thead class="bg-gray-50"><tr><th class="px-2 py-1">Nom</th><th class="px-2 py-1">Age</th></tr></thead>
+                                    <tbody><tr><td class="px-2 py-1">Jean</td><td class="px-2 py-1">25</td></tr>
+                                    <tr><td class="px-2 py-1">Marie</td><td class="px-2 py-1">30</td></tr></tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Footer avec astuce -->
+            <div class="bg-blue-50 border-t border-blue-100 px-6 py-4">
+                <div class="flex items-start gap-3">
+                    <span class="text-blue-600 text-xl">💡</span>
+                    <div class="text-sm text-gray-700">
+                        <span class="font-semibold">Astuces :</span>
+                        <ul class="mt-1 space-y-1">
+                            <li>• <strong>Deux espaces</strong> à la fin d'une ligne = saut de ligne simple</li>
+                            <li>• <strong>Une ligne vide</strong> = nouveau paragraphe</li>
+                            <li>• Les <strong>erreurs de syntaxe</strong> affichent juste le texte brut, rien ne casse !</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <form id="create-article-form" class="bg-white p-6 rounded-lg shadow space-y-5">
             <div>
                 <label class="block font-medium mb-1">Titre *</label>

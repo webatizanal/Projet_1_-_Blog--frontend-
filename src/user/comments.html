@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Mes commentaires</title>
+    <link rel="stylesheet" href="/src/style.css"> 
+    <link rel="icon" type="image/png" href="../assets/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pinyon+Script&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+    <script type="module">
+        import { commentsByarticle } from '../userAuteur.js';
+        commentsByarticle();
+    </script>
+</head>
+<body class="bg-gray-100">
+
+    <header>
+        <div class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
+            <a href="../../index.html"><div class="text-2xl font-bold text-blue-600 tektur">DevEtDemain</div></a>
+            <div class="flex gap-4">
+                <span id="user-name" class="text-gray-700  username ">User Name</span>
+                <button id="logout-btn" class="text-red-500 cursor-pointer  logout">
+                    <img src="../assets/logout.png" alt="" class="w-5">
+                </button>
+            </div>
+        </div> 
+
+        <div class="bg-gray-800 text-white py-3 px-6 flex justify-center gap-8">
+            <a href="/src/user/dashboard.html" class="hover:text-blue-400">Dashboard</a>
+            <a href="/src/user/create-article.html" class="hover:text-blue-400">Nouvel article</a>
+            <a href="/src/user/drafts.html" class="hover:text-blue-400">Brouillons</a>
+            <a href="/src/user/profile.html" class="hover:text-blue-400">Profil</a>
+        </div>         
+    </header>
+
+    <main class="max-w-7xl mx-auto py-10 px-4">
+        <h1 class="text-3xl font-bold mb-6">Tableau de bord</h1>
+
+        <!-- Stats spécifiques à l'article -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <div class="bg-white p-4 rounded shadow text-center border-t-4 border-green-500">
+                <div class="text-2xl font-bold text-green-600" id="article-approved">0</div>
+                <div class="text-gray-500">Approuvés</div>
+            </div>
+            <div class="bg-white p-4 rounded shadow text-center border-t-4 border-yellow-500">
+                <div class="text-2xl font-bold text-yellow-600" id="article-pending">0</div>
+                <div class="text-gray-500">En attente</div>
+            </div>
+            <div class="bg-white p-4 rounded shadow text-center border-t-4 border-red-500">
+                <div class="text-2xl font-bold text-red-600" id="article-spam">0</div>
+                <div class="text-gray-500">Spam</div>
+            </div>
+        </div>
+
+        <!-- Liste des commentaires -->
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl font-bold">Liste des commentaires : <span class="title">Titre de l'article</span></h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2   comment_container-js">
+            <!-- les commentaires -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 mb-4">
+                <div class="flex gap-4">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Avatar" class="w-10 h-10 rounded-full object-cover">
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Jean Dupont</h4>
+                                <div class="flex gap-3 text-xs text-gray-400 mt-0.5">
+                                    <span>15 mars 2025</span>
+                                    <span>•</span>
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <button class="p-1 text-gray-400 hover:bg-gray-200 rounded" title="Supprimer">
+                                    <img src="../assets/pending.png" alt="" class="w-5">
+                                </button>                                
+                                <button class="p-1 text-green-600 hover:bg-green-100 rounded" title="Approuver">
+                                    <img src="../assets/approuver.png" alt="" class="w-6">
+                                </button>
+                                <button class="p-1 text-red-600 hover:bg-red-100 rounded" title="Spam">
+                                    <img src="../assets/spam.png" alt="" class="w-6">
+                                </button>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 mt-2 leading-relaxed">
+                            Super article ! Les explications sont très claires. J'ai particulièrement apprécié la partie sur les closures.
+                        </p>
+                        <div class="flex gap-4 mt-3 text-xs text-gray-400">
+                            <span class="flex justify-center items-center gap-1">
+                                <img src="../assets/like.png" alt="" class="w-5">
+                                <span class="likeCount font-bold text-black">12</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+
+    </main>
+
+
+
+    <template id="comment_template-js">
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 mb-4">
+            <div class="flex gap-4">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Avatar" class="w-10 h-10 rounded-full object-cover">
+                <div class="flex-1">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Jean Dupont</h4>
+                            <div class="flex gap-3 text-xs text-gray-400 mt-0.5">
+                                <span>15 mars 2025</span>
+                                <span>•</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="p-1 text-gray-400 hover:bg-gray-200 rounded" title="Supprimer">
+                                <img src="../assets/pending.png" alt="" class="w-5">
+                            </button>                                
+                            <button class="p-1 text-green-600 hover:bg-green-100 rounded" title="Approuver">
+                                <img src="../assets/approuver.png" alt="" class="w-6">
+                            </button>
+                            <button class="p-1 text-red-600 hover:bg-red-100 rounded" title="Spam">
+                                <img src="../assets/spam.png" alt="" class="w-6">
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mt-2 leading-relaxed">
+                        Super article ! Les explications sont très claires. J'ai particulièrement apprécié la partie sur les closures.
+                    </p>
+                    <div class="flex gap-4 mt-3 text-xs text-gray-400">
+                        <span class="flex justify-center items-center gap-1">
+                            <img src="../assets/like.png" alt="" class="w-5">
+                            <span class="likeCount font-bold text-black">12</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </template>
+</body>
+</html>

@@ -5,86 +5,267 @@
     <title>Catégorie - Mon Blog</title>
     <link rel="stylesheet" href="/src/style.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pinyon+Script&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+    <script type="module">
+        import { category } from '../main.js';
+        category();
+    </script>
+    <link rel="icon" type="image/png" href="../assets/favicon.ico">
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100"> 
     <header class="h-fit">
         <!-- ==================== PREMIÈRE NAVBAR ==================== -->
         <div class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
-            <a href="/src/public/index.html" class="hover:text-blue-400"><div class="text-2xl font-bold text-blue-600 tektur">🍃 MonBlog</div></a>
+            <a href="/" class="hover:text-blue-400"><div class="text-2xl tektur font-bold text-blue-600">DevEtDemain</div></a>
             <div class="flex gap-4 items-center">
-                <img src="../assets/rechercher.png" alt="" class="w-6 h-6">
-                <a href="#" class="text-gray-600 hover:text-blue-500">FB</a>
-                <a href="#" class="text-gray-600 hover:text-blue-500">X</a>
-                <a href="#" class="text-gray-600 hover:text-blue-500">IG</a>
-                <a href="/src/public/login.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Connexion</a>
+                <span class="md:border-2 md:border-gray-500 p-1 rounded-full md:w-30 cursor-pointer flex flex-row items-center text-xs   searchModal">
+                    <img src="../assets/rechercher.png" alt="" class="w-6 h-6">
+                    <span class="hidden md:inline-block">Searching...</span>
+                </span>
+
+                <a href="#" class="text-gray-600 hover:text-blue-500">
+                    <img src="../assets/facebook.png" alt="" class="w-5">
+                </a>
+                <a href="#" class="text-gray-600 hover:text-blue-500">
+                    <img src="../assets/twitter.png" alt="" class="w-4">
+                </a>
+                <a href="#" class="text-gray-600 hover:text-blue-500">
+                    <img src="../assets/instagram.png" alt="" class="w-4">
+                </a>
+                <a href="/src/public/login.html" class="bg-blue-600 text-white p-0.5 rounded-full hover:bg-blue-700 transition">
+                    <img src="../assets/login.png" alt="" class="w-7 h-7 invert brightness-0">
+                </a>
             </div>
         </div>
 
         <!-- ==================== DEUXIÈME NAVBAR ==================== -->
-        <div class="bg-gray-800 text-white py-3 px-6 flex flex-wrap justify-center gap-6">
-            <a href="/src/public/index.html" class="hover:text-blue-400">Accueil</a>
-            <a href="/src/public/category.html?id=tech" class="hover:text-blue-400">Catégories ›</a>
-            <a href="/src/public/about.html" class="hover:text-blue-400">À propos</a>
-            <a href="/src/public/contact.html" class="hover:text-blue-400">Contact</a>
-        </div>  
+        <div class="bg-gray-800 text-sm md:text-base text-white py-3 px-6 flex flex-wrap justify-center gap-6   navLink">
+            <a href="/" class="hover:text-blue-400 hover:border-b-2">Accueil</a>
+            <a href="/src/public/category.html?id=tech" class=" border-b-2">Catégories ›</a>
+            <a href="/src/public/about.html" class="hover:text-blue-400 hover:border-b-2">À propos</a>
+            <a href="/src/public/contact.html" class="hover:text-blue-400 hover:border-b-2">Contact</a>
+        </div> 
     </header>
 
-    <!-- Contenu principal -->
-    <main class="max-w-7xl mx-auto py-12 px-4">
-        <!-- En-tête de catégorie -->
-        <div class="text-center mb-12">
-            <h1 id="category-name" class="text-4xl font-bold mb-4">Tech</h1>
-            <p id="category-desc" class="text-gray-600 max-w-2xl mx-auto">Les dernières actualités et tendances du monde technologique.</p>
-        </div>
+    <!-- Structure de la modale -->
+    <div class="modal-overlay" id="modal_container-js"  style="display:none">
+        <div class="modal_box-js">
+            <div class="header_modal">
+                <h2>Resultats de votre recherche (<span class="result_of_searching-js">5</span>)</h2>
+                <button class="close-btn font-bold text-black text-center flex items-center justify-center p-0.5 h-8 w-8 bg-gray-400 rounded-full text-3xl" id="close-btn">&times;</button>
+            </div>
 
-        <!-- Liste des articles -->
-        <div id="articles-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Article 1 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="https://picsum.photos/id/0/400/250" alt="Article tech" class="w-full h-48 object-cover">
-                <div class="p-5">
-                    <div class="text-xs text-blue-600 font-semibold mb-2">Tech • 15 min de lecture</div>
-                    <h2 class="text-xl font-bold mb-2">Les tendances tech 2025</h2>
-                    <p class="text-gray-600 mb-4">Découvrez ce qui va marquer l'industrie cette année...</p>
-                    <a href="/src/public/article.html?id=1" class="text-blue-600 font-medium hover:underline">Lire l'article →</a>
-                </div>
-            </div>
-            <!-- Article 2 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="https://picsum.photos/id/1/400/250" alt="Article tech" class="w-full h-48 object-cover">
-                <div class="p-5">
-                    <div class="text-xs text-blue-600 font-semibold mb-2">Tech • 8 min de lecture</div>
-                    <h2 class="text-xl font-bold mb-2">Pourquoi la 6G arrive plus vite qu'on ne le pense</h2>
-                    <p class="text-gray-600 mb-4">Les premiers tests sont prometteurs...</p>
-                    <a href="/src/public/article.html?id=2" class="text-blue-600 font-medium hover:underline">Lire l'article →</a>
-                </div>
-            </div>
-            <!-- Article 3 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="https://picsum.photos/id/2/400/250" alt="Article tech" class="w-full h-48 object-cover">
-                <div class="p-5">
-                    <div class="text-xs text-blue-600 font-semibold mb-2">Tech • 12 min de lecture</div>
-                    <h2 class="text-xl font-bold mb-2">Le cloud computing en 2025</h2>
-                    <p class="text-gray-600 mb-4">Les géants du cloud se disputent le marché...</p>
-                    <a href="/src/public/article.html?id=3" class="text-blue-600 font-medium hover:underline">Lire l'article →</a>
-                </div>
+            <div class="article_modal_container-js">
+                <!-- tous les article trouvées après la recherche, apparettront ici -->
             </div>
         </div>
+    </div>
+ 
 
-        <!-- Pagination (structure) -->
-        <div class="flex justify-center gap-3 mt-12">
-            <a href="#" class="px-4 py-2 border rounded-lg hover:bg-gray-100">« Précédent</a>
-            <a href="#" class="px-4 py-2 border rounded-lg bg-blue-600 text-white">1</a>
-            <a href="#" class="px-4 py-2 border rounded-lg hover:bg-gray-100">2</a>
-            <a href="#" class="px-4 py-2 border rounded-lg hover:bg-gray-100">3</a>
-            <a href="#" class="px-4 py-2 border rounded-lg hover:bg-gray-100">Suivant »</a>
-        </div>
-    </main>
+    <div class="flex md:flex-row-reverse">
+        <!-- Contenu principal -->
+        <main class="max-w-7xl mx-auto py-12 px-4">
+            <!-- Liste des articles -->
+            <div id="articles-list" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8   recent_article_container-js">
+                <!-- les articles recents ICI -->
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex justify-center gap-3 mt-12    paginationBox">
+                <!-- les bouton de navigation -->
+            </div>
+        </main> 
+
+
+        <aside class="w-80 shrink-0 space-y-6">
+            <!-- Bloc : Catégories -->
+            <div class="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+                <h3 class="mb-4 flex items-center gap-2 text-lg font-semibold text-gray-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 text-indigo-500">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 0 1 0 3.75H5.625a1.875 1.875 0 0 1 0-3.75Z" />
+                    </svg>
+                    Catégories
+                </h3>
+                <div class="max-h-64 overflow-y-auto pr-1 custom-scrollbar">
+                    <div class="space-y-2.5   category_container-js">
+                        <!-- Catégorie active (exemple) -->
+                        <label class="allAttached flex cursor-pointer items-center justify-between rounded-lg bg-indigo-50 px-3 py-2 text-indigo-700 transition hover:bg-indigo-100">
+                            <span class="flex items-center gap-2 text-sm font-medium">
+                                <input type="checkbox" class="size-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" checked>
+                                Toutes les catégories
+                            </span>
+                            <span class="text-xs font-medium  count">24</span>
+                        </label>
+
+                        <!-- Les autres categories -->
+                    </div>
+                </div>
+            </div>
+            <!-- Bloc : Auteur -->
+            <div class="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+                <h3 class="mb-4 flex items-center gap-2 text-lg font-semibold text-gray-800">
+                    Auteurs
+                </h3>
+                <div class="max-h-64 overflow-y-auto pr-1 custom-scrollbar">
+                    <div class="space-y-2.5   category_container-js">
+                        <!-- Catégorie active (exemple) -->
+                        <label class="allAttached flex cursor-pointer items-center justify-between rounded-lg bg-indigo-50 px-3 py-2 text-indigo-700 transition hover:bg-indigo-100">
+                            <span class="flex items-center gap-2 text-sm font-medium">
+                                <input type="checkbox" class="size-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" checked>
+                                Toutes les catégories
+                            </span>
+                            <span class="text-xs font-medium  count">24</span>
+                        </label>
+
+                        <!-- Les autres categories -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bloc : Niveau de j’aime (étoiles) -->
+            <div class="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+                <h3 class="mb-4 flex items-center gap-2 text-lg font-semibold text-gray-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 text-amber-500">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.56.56 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
+                    </svg>
+                    Note minimale
+                </h3>
+                <div class="space-y-3   note_moyenne">
+                    <!-- 5 étoiles -->
+                    <label class="five flex cursor-pointer items-center justify-between rounded-lg px-2 py-1 hover:bg-gray-50">
+                        <span class="flex items-center gap-2">
+                            <input type="radio" name="rating" class="size-4 text-amber-500 focus:ring-amber-400">
+                            <span class="flex gap-0.5">
+                                <span class="text-amber-500">★★★★★</span>
+                                <span class="text-sm text-gray-500">(5)</span>
+                            </span>
+                        </span>
+                        <span class="text-xs text-gray-400">excellent</span>
+                    </label>
+
+                    <!-- 4 étoiles -->
+                    <label class="four flex cursor-pointer items-center justify-between rounded-lg px-2 py-1 hover:bg-gray-50">
+                        <span class="flex items-center gap-2">
+                            <input type="radio" name="rating" class="size-4 text-amber-500 focus:ring-amber-400">
+                            <span class="flex gap-0.5">
+                                <span class="text-amber-500">★★★★</span>
+                                <span class="text-gray-400">★</span>
+                                <span class="text-sm text-gray-500">(4)</span>
+                            </span>
+                        </span>
+                        <span class="text-xs text-gray-400">très bien</span>
+                    </label>
+
+                    <!-- 3 étoiles -->
+                    <label class="three flex cursor-pointer items-center justify-between rounded-lg px-2 py-1 hover:bg-gray-50">
+                        <span class="flex items-center gap-2">
+                            <input type="radio" name="rating" class="size-4 text-amber-500 focus:ring-amber-400">
+                            <span class="flex gap-0.5">
+                                <span class="text-amber-500">★★★</span>
+                                <span class="text-gray-400">★★</span>
+                                <span class="text-sm text-gray-500">(3)</span>
+                            </span>
+                        </span>
+                        <span class="text-xs text-gray-400">bien</span>
+                    </label>
+
+                    <!-- 2 étoiles -->
+                    <label class="two flex cursor-pointer items-center justify-between rounded-lg px-2 py-1 hover:bg-gray-50">
+                        <span class="flex items-center gap-2">
+                            <input type="radio" name="rating" class="size-4 text-amber-500 focus:ring-amber-400">
+                            <span class="flex gap-0.5">
+                                <span class="text-amber-500">★★</span>
+                                <span class="text-gray-400">★★★</span>
+                                <span class="text-sm text-gray-500">(2)</span>
+                            </span>
+                        </span>
+                        <span class="text-xs text-gray-400">passable</span>
+                    </label>
+
+                    <!-- 1 étoile -->
+                    <label class="one flex cursor-pointer items-center justify-between rounded-lg px-2 py-1 hover:bg-gray-50">
+                        <span class="flex items-center gap-2">
+                            <input type="radio" name="rating" class="size-4 text-amber-500 focus:ring-amber-400">
+                            <span class="flex gap-0.5">
+                                <span class="text-amber-500">★</span>
+                                <span class="text-gray-400">★★★★</span>
+                                <span class="text-sm text-gray-500">(1)</span>
+                            </span>
+                        </span>
+                        <span class="text-xs text-gray-400">insuffisant</span>
+                    </label>
+                </div>
+            </div>
+        </aside>
+    </div>
+
 
     <footer class="bg-gray-900 text-gray-400 py-10 mt-12">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <p>© 2025 MonBlog - Tous droits réservés</p>
+            <p>© 2025 DevEtDemain - Tous droits réservés</p>
         </div>
     </footer>
+
+
+
+    <template id="recent_article_element-js">
+        <div class="bg-white rounded-lg shadow-md overflow-hidden    recent_article_element">
+            <img src="https://picsum.photos/id/0/400/250" alt="Article tech" class="w-full h-48 object-cover">
+            <div class="p-5">
+                <div class="text-xs text-blue-600 font-semibold mb-2"><span class="cat">Tech • </span> <span class="readTime">15</span> de lecture</div>
+                <h2 class="text-xl font-bold mb-2">Les tendances tech 2025</h2>
+                <p class="text-gray-600 mb-4 resume">Découvrez ce qui va marquer l'industrie cette année...</p>
+                <a href="/src/public/article.html?id=1" class="text-blue-600 font-medium hover:underline">Lire l'article →</a>
+            </div>
+        </div>
+    </template>
+
+    <template id="category_element-js">
+        <label id="" class="flex cursor-pointer items-center justify-between rounded-lg px-3 py-2 text-gray-700 transition hover:bg-gray-100">
+            <span class="flex items-center gap-2 text-sm">
+                <input type="checkbox" class="size-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                <span class="name">Tech</span>
+            </span>
+            <span class="text-xs text-gray-400   attached">12</span>
+        </label>
+    </template>
+
+
+
+    <div class="construction">
+        <header class="h-fit">
+            <!-- ==================== PREMIÈRE NAVBAR ==================== -->
+            <div class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
+                <a href="/" class="hover:text-blue-400"><div class="text-2xl tektur font-bold text-blue-600">DevEtDemain</div></a>
+                <div class="flex gap-4 items-center">
+                    <span class="md:border-2 md:border-gray-500 p-1 rounded-full md:w-30 cursor-pointer flex flex-row items-center text-xs   searchModal">
+                        <img src="../assets/rechercher.png" alt="" class="w-6 h-6">
+                        <span class="hidden md:inline-block">Searching...</span>
+                    </span>
+
+                    <a href="#" class="text-gray-600 hover:text-blue-500">
+                        <img src="../assets/facebook.png" alt="" class="w-5">
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-blue-500">
+                        <img src="../assets/twitter.png" alt="" class="w-4">
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-blue-500">
+                        <img src="../assets/instagram.png" alt="" class="w-4">
+                    </a>
+                    <a href="/src/public/login.html" class="bg-blue-600 text-white p-0.5 rounded-full hover:bg-blue-700 transition">
+                        <img src="../assets/login.png" alt="" class="w-7 h-7 invert brightness-0">
+                    </a>
+                </div>
+            </div>
+
+            <!-- ==================== DEUXIÈME NAVBAR ==================== -->
+            <div class="bg-gray-800 text-sm md:text-base text-white py-3 px-6 flex flex-wrap justify-center gap-6   navLink">
+                <a href="/" class="hover:text-blue-400 hover:border-b-2">Accueil</a>
+                <a href="/src/public/category.html?id=tech" class=" border-b-2">Catégories ›</a>
+                <a href="/src/public/about.html" class="hover:text-blue-400 hover:border-b-2">À propos</a>
+                <a href="/src/public/contact.html" class="hover:text-blue-400 hover:border-b-2">Contact</a>
+            </div> 
+        </header>
+        <p class="message">Cette page est en contruction !</p>
+    </div>
 </body>
 </html>

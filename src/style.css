@@ -1,13 +1,186 @@
 @import "tailwindcss";
 
+
+
+/* ------Gestion des scroll------ */
+  .custom-scrollbar::-webkit-scrollbar {
+      width: 5px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 10px;
+  }
+/* ------------------------------- */
+
+
 .pinyon-script {
   font-family: "Pinyon Script", cursive;
 }
 
-.montserrat, body {
+.montserrat, body { 
   font-family: "Montserrat", sans-serif;
 }
 
 .tektur, h1, h2, h3, h4, h5, h6{
     font-family: "Tektur", sans-serif;
+}
+
+
+
+
+/* ------Degradé sur les articles à la une-------- */
+.la_une_article-js {
+    position: relative;
+    overflow: hidden;
+}
+
+.la_une_article-js::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%; /* Pour ajuster la hauteur du dégradé */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+    pointer-events: none;
+}
+/* ------ */
+
+
+/* 📁 ./public/article.html (Pour styliser le contenu de l'article en lecture) */
+.article-content {
+    line-height: 1.8;
+    font-size: 1.125rem;
+}
+
+.article-content h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.article-content h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.article-content h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.article-content p {
+    margin-bottom: 1rem;
+}
+
+.article-content code {
+    background-color: #f3f4f6;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-family: monospace;
+    font-size: 0.875rem;
+}
+
+.article-content pre {
+    background-color: #1f2937;
+    color: #f3f4f6;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+.article-content pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+.article-content blockquote {
+    border-left: 4px solid #3b82f6;
+    padding-left: 1rem;
+    margin: 1rem 0;
+    font-style: italic;
+    color: #4b5563;
+}
+
+.article-content ul, 
+.article-content ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+}
+
+.article-content li {
+    margin: 0.25rem 0;
+}
+
+.article-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+}
+
+.article-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.article-content th,
+.article-content td {
+    border: 1px solid #e5e7eb;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+.article-content th {
+    background-color: #f3f4f6;
+}
+
+/* En contruction */
+.construction {
+    position: fixed;
+    z-index: 9999;  /* Plus haut possible */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;      /* Pas besoin de height/width, top/left/right/bottom suffisent */
+    
+    /* Background sombre avec blur */
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    
+    /* Centrer le message */
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    
+    /* Animation optionnelle */
+    animation: fadeIn 0.3s ease;
+}
+
+/* Animation d'apparition */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.construction p.message{
+    color: white;
+    font-size: 30px;
+    padding: 15px;
+    text-align: center;
 }

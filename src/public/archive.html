@@ -3,107 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Archives - MonBlog</title>
+    <title>Archives - DevEtDemain</title>
     <link rel="stylesheet" href="/src/style.css"> 
+    <link rel="icon" type="image/png" href="../assets/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pinyon+Script&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+    <script type="module">
+        import { archive } from '../main.js';
+        archive();
+    </script> 
 </head>
 <body class="bg-gray-100">
-
+ 
     <header class="h-fit">
         <!-- ==================== PREMIÈRE NAVBAR ==================== -->
         <div class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
-            <a href="/src/public/index.html" class="hover:text-blue-400"><div class="text-2xl font-bold text-blue-600 tektur">🍃 MonBlog</div></a>
+            <a href="/" class="hover:text-blue-400"><div class="text-2xl tektur font-bold text-blue-600">DevEtDemain</div></a>
             <div class="flex gap-4 items-center">
-                <img src="../assets/rechercher.png" alt="" class="w-6 h-6">
-                <a href="#" class="text-gray-600 hover:text-blue-500">FB</a>
-                <a href="#" class="text-gray-600 hover:text-blue-500">X</a>
-                <a href="#" class="text-gray-600 hover:text-blue-500">IG</a>
-                <a href="/src/public/login.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Connexion</a>
+                <span class="md:border-2 md:border-gray-500 p-1 rounded-full md:w-30 cursor-pointer flex flex-row items-center text-xs   searchModal">
+                    <img src="../assets/rechercher.png" alt="" class="w-6 h-6">
+                    <span class="hidden md:inline-block">Searching...</span>
+                </span>
+
+                <a href="#" class="text-gray-600 hover:text-blue-500">
+                    <img src="../assets/facebook.png" alt="" class="w-5">
+                </a>
+                <a href="#" class="text-gray-600 hover:text-blue-500">
+                    <img src="../assets/twitter.png" alt="" class="w-4">
+                </a>
+                <a href="#" class="text-gray-600 hover:text-blue-500">
+                    <img src="../assets/instagram.png" alt="" class="w-4">
+                </a>
+                <a href="/src/public/login.html" class="bg-blue-600 text-white p-0.5 rounded-full hover:bg-blue-700 transition">
+                    <img src="../assets/login.png" alt="" class="w-7 h-7 invert brightness-0">
+                </a>
             </div>
         </div>
 
         <!-- ==================== DEUXIÈME NAVBAR ==================== -->
-        <div class="bg-gray-800 text-white py-3 px-6 flex flex-wrap justify-center gap-6">
-            <a href="/src/public/index.html" class="hover:text-blue-400">Accueil</a>
-            <a href="/src/public/category.html?id=tech" class="hover:text-blue-400">Catégories ›</a>
-            <a href="/src/public/about.html" class="hover:text-blue-400">À propos</a>
-            <a href="/src/public/contact.html" class="hover:text-blue-400">Contact</a>
-        </div>  
+        <div class="bg-gray-800 text-sm md:text-base text-white py-3 px-6 flex flex-wrap justify-center gap-6   navLink">
+            <a href="/" class="border-b-2">Accueil</a>
+            <a href="/src/public/category.html?id=tech" class="hover:text-blue-400 hover:border-b-2">Catégories ›</a>
+            <a href="/src/public/about.html" class="hover:text-blue-400 hover:border-b-2">À propos</a>
+            <a href="/src/public/contact.html" class="hover:text-blue-400 border-b-2 border-transparent hover:border-blue-400">Contact</a>
+        </div> 
     </header>
 
-    <main class="max-w-7xl mx-auto py-12 px-4">
-        <h1 class="text-4xl font-bold mb-8 text-center">📚 Tous les articles</h1>
+    <!-- Structure de la modale -->
+    <div class="modal-overlay" id="modal_container-js"  style="display:none">
+        <div class="modal_box-js">
+            <div class="header_modal">
+                <h2>Resultats de votre recherche (<span class="result_of_searching-js">5</span>)</h2>
+                <button class="close-btn font-bold text-black text-center flex items-center justify-center p-0.5 h-8 w-8 bg-gray-400 rounded-full text-3xl" id="close-btn">&times;</button>
+            </div>
 
-        <!-- Filtres simples (par année, par catégorie) -->
-        <div class="flex flex-wrap justify-center gap-3 mb-10">
-            <a href="#" class="px-4 py-2 bg-blue-600 text-white rounded-lg">Tous</a>
-            <a href="#" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg">2025</a>
-            <a href="#" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg">2024</a>
-            <a href="#" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg">Tech</a>
-            <a href="#" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg">Développement</a>
-            <a href="#" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg">IA</a>
+            <div class="article_modal_container-js">
+                <!-- tous les article trouvées après la recherche, apparettront ici -->
+            </div>
+        </div>
+    </div>
+
+    <main class="max-w-7xl mx-auto py-12 px-4">
+        <div class="headerCategory mb-8 flex flex-col md:flex-row justify-center items-center gap-2 ">
+            <h1 class="text-4xl font-bold text-center">📚 Tous les articles</h1>
+            <form action="#" method="get" class="border border-blue-400 rounded-2xl">
+                <select name="" id="#" class="outline-0  p-1  selectCategory">
+                     <!-- les options  -->
+                </select>
+            </form>
         </div>
 
+
         <!-- Liste des articles -->
-        <div class="space-y-6">
-            <!-- Article 1 -->
-            <div class="bg-white rounded-lg shadow-md p-6 flex flex-col md:flex-row gap-6">
-                <img src="https://picsum.photos/id/0/200/150" alt="Article" class="w-full md:w-48 h-32 object-cover rounded">
-                <div class="flex-1">
-                    <div class="flex items-center gap-3 text-sm text-gray-500 mb-2">
-                        <span>15 mars 2025</span>
-                        <span class="text-blue-600">Tech</span>
-                        <span>12 min de lecture</span>
-                    </div>
-                    <h2 class="text-xl font-bold mb-2">Les tendances tech 2025</h2>
-                    <p class="text-gray-600 mb-3">Découvrez ce qui va marquer l'industrie cette année...</p>
-                    <a href="/src/public/article.html?id=1" class="text-blue-600 font-medium hover:underline">Lire l'article →</a>
-                </div>
-            </div>
-            <!-- Article 2 -->
-            <div class="bg-white rounded-lg shadow-md p-6 flex flex-col md:flex-row gap-6">
-                <img src="https://picsum.photos/id/1/200/150" alt="Article" class="w-full md:w-48 h-32 object-cover rounded">
-                <div class="flex-1">
-                    <div class="flex items-center gap-3 text-sm text-gray-500 mb-2">
-                        <span>10 mars 2025</span>
-                        <span class="text-blue-600">Développement</span>
-                        <span>8 min de lecture</span>
-                    </div>
-                    <h2 class="text-xl font-bold mb-2">Pourquoi la 6G arrive plus vite qu'on ne le pense</h2>
-                    <p class="text-gray-600 mb-3">Les premiers tests sont prometteurs...</p>
-                    <a href="/src/public/article.html?id=2" class="text-blue-600 font-medium hover:underline">Lire l'article →</a>
-                </div>
-            </div>
-            <!-- Article 3 -->
-            <div class="bg-white rounded-lg shadow-md p-6 flex flex-col md:flex-row gap-6">
-                <img src="https://picsum.photos/id/2/200/150" alt="Article" class="w-full md:w-48 h-32 object-cover rounded">
-                <div class="flex-1">
-                    <div class="flex items-center gap-3 text-sm text-gray-500 mb-2">
-                        <span>5 mars 2025</span>
-                        <span class="text-blue-600">IA</span>
-                        <span>10 min de lecture</span>
-                    </div>
-                    <h2 class="text-xl font-bold mb-2">Le cloud computing en 2025</h2>
-                    <p class="text-gray-600 mb-3">Les géants du cloud se disputent le marché...</p>
-                    <a href="/src/public/article.html?id=3" class="text-blue-600 font-medium hover:underline">Lire l'article →</a>
-                </div>
-            </div>
+        <div class="space-y-6 archive_container-js">
+            <!-- Les Article ici -->
         </div>
 
         <!-- Pagination -->
-        <div class="flex justify-center gap-3 mt-12">
-            <a href="#" class="px-4 py-2 border rounded-lg hover:bg-gray-100">« Précédent</a>
-            <a href="#" class="px-4 py-2 border rounded-lg bg-blue-600 text-white">1</a>
-            <a href="#" class="px-4 py-2 border rounded-lg hover:bg-gray-100">2</a>
-            <a href="#" class="px-4 py-2 border rounded-lg hover:bg-gray-100">3</a>
-            <a href="#" class="px-4 py-2 border rounded-lg hover:bg-gray-100">Suivant »</a>
+        <div class="flex justify-center gap-3 mt-12    paginationBox">
+
         </div>
     </main>
 
     <footer class="bg-gray-900 text-gray-400 py-10 mt-12">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <p>© 2025 MonBlog - Tous droits réservés</p>
+            <p>© 2025 DevEtDemain - Tous droits réservés</p>
         </div>
     </footer>
+
+
+
+    <!-- Les template -->
+    <template id="archive_element-js">
+        <div data-categoryId="" id="" class="archive_element bg-white rounded-lg shadow-md p-6 flex flex-col md:flex-row gap-6">
+            <img src="https://picsum.photos/id/0/200/150" alt="Article" class="w-full md:w-48 h-32 object-cover rounded">
+            <div class="flex-1">
+                <div class="flex items-center gap-3 text-sm text-gray-500 mb-2">
+                    <span class="publishedAt">15 mars 2025</span>
+                    <span class="text-blue-600 cat">Tech</span>
+                    <span class="readTime">12</span> de lecture
+                </div>
+                <h2 class="text-xl font-bold mb-2">Les tendances tech 2025</h2>
+                <p class="text-gray-600 mb-3  resume">Découvrez ce qui va marquer l'industrie cette année...</p>
+                <a href="/src/public/article.html?id=1" class="text-blue-600 font-medium hover:underline">Lire l'article →</a>
+            </div>
+        </div>
+    </template>
+
+
+    <div class="construction">
+        <header class="h-fit">
+            <!-- ==================== PREMIÈRE NAVBAR ==================== -->
+            <div class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
+                <a href="/" class="hover:text-blue-400"><div class="text-2xl tektur font-bold text-blue-600">DevEtDemain</div></a>
+                <div class="flex gap-4 items-center">
+                    <span class="md:border-2 md:border-gray-500 p-1 rounded-full md:w-30 cursor-pointer flex flex-row items-center text-xs   searchModal">
+                        <img src="../assets/rechercher.png" alt="" class="w-6 h-6">
+                        <span class="hidden md:inline-block">Searching...</span>
+                    </span>
+
+                    <a href="#" class="text-gray-600 hover:text-blue-500">
+                        <img src="../assets/facebook.png" alt="" class="w-5">
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-blue-500">
+                        <img src="../assets/twitter.png" alt="" class="w-4">
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-blue-500">
+                        <img src="../assets/instagram.png" alt="" class="w-4">
+                    </a>
+                    <a href="/src/public/login.html" class="bg-blue-600 text-white p-0.5 rounded-full hover:bg-blue-700 transition">
+                        <img src="../assets/login.png" alt="" class="w-7 h-7 invert brightness-0">
+                    </a>
+                </div>
+            </div>
+
+            <!-- ==================== DEUXIÈME NAVBAR ==================== -->
+            <div class="bg-gray-800 text-sm md:text-base text-white py-3 px-6 flex flex-wrap justify-center gap-6   navLink">
+                <a href="/" class="hover:text-blue-400 hover:border-b-2">Accueil</a>
+                <a href="/src/public/category.html?id=tech" class="hover:text-blue-400 hover:border-b-2 ">Catégories ›</a>
+                <a href="/src/public/about.html" class="hover:text-blue-400 hover:border-b-2">À propos</a>
+                <a href="/src/public/contact.html" class="hover:text-blue-400 border-b-2 border-transparent hover:border-blue-400">Contact</a>
+            </div> 
+        </header>
+        <p class="message">Cette page est en contruction !</p>
+    </div>
 </body>
 </html>

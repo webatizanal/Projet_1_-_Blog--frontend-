@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="custom-scrollbar-html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +17,10 @@
     <header class="h-fit">
         <!-- ==================== PREMIÈRE NAVBAR ==================== -->
         <div class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
-            <a href="/" class="hover:text-blue-400"><div class="text-2xl font-bold text-blue-600 tektur">DevEtDemain</div></a>
+            <a href="/" class="hover:text-blue-400">
+                <div class="text-2xl tektur font-bold text-blue-600  hidden md:block">DevEtDemain</div>
+                <img src="../assets/logo.jpg" alt="" class="w-8 h-8 rounded-2xl  md:hidden">
+            </a>
             <div class="flex gap-4 items-center">
                 <a href="#" class="text-gray-600 hover:text-blue-500">
                     <img src="../assets/facebook.png" alt="" class="w-5">

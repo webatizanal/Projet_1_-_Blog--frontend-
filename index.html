@@ -1,28 +1,41 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="custom-scrollbar-html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevEtDemain - Accueil</title>
     <link rel="stylesheet" href="/src/style.css"> 
+    <link rel="stylesheet" href="/src/modal.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pinyon+Script&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
     <script type="module">
         import { home } from './src/main.js';
         home(); 
     </script>
-    <script type="module" src="src/logique_front/fonctions/responsive.js"></script>
+    <script type="module">
+        import { modal } from './src/logique_front/fonctions/modal.js';
+        modal(); 
+    </script>
     <link rel="icon" type="image/png" href="./src/assets/favicon.ico">
+
+    <!-- Caroucel- Swiper (CSS & JS) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script type="module" src="./src/logique_front/fonctions/caroucel.js"></script>
+    
 </head>
 <body class="bg-gray-100"> 
 
     <header class="h-fit">
         <!-- ==================== PREMIÈRE NAVBAR ==================== -->
         <div class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
-            <a href="/" class="hover:text-blue-400"><div class="text-2xl tektur font-bold text-blue-600">DevEtDemain</div></a>
+            <a href="/" class="hover:text-blue-400">
+                <div class="text-2xl tektur font-bold text-blue-600  hidden md:block">DevEtDemain</div>
+                <img src="src/assets/logo.jpg" alt="" class="w-8 h-8 rounded-2xl  md:hidden">
+            </a>
             <div class="flex gap-4 items-center">
                 <span class="md:border-2 md:border-gray-500 p-1 rounded-full md:w-30 cursor-pointer flex flex-row items-center text-xs   searchModal">
                     <img src="src/assets/rechercher.png" alt="" class="w-6 h-6">
-                    <span class="hidden md:inline-block">Searching...</span>
+                    <span class="hidden md:inline-block">Ctrl+k</span>
                 </span>
 
                 <a href="#" class="text-gray-600 hover:text-blue-500">
@@ -58,16 +71,32 @@
 
 
     <!-- Structure de la modale -->
-    <div class="modal-overlay" id="modal_container-js"  style="display:none">
-        <div class="modal_box-js">
-            <div class="header_modal">
-                <h2>Resultats de votre recherche (<span class="result_of_searching-js">5</span>)</h2>
-                <button class="close-btn font-bold text-black text-center flex items-center justify-center p-0.5 h-8 w-8 bg-gray-400 rounded-full text-3xl" id="close-btn">&times;</button>
+    <div class="modal_container-js" id="" style="display:none">  <!-- w-full-->
+        <div class="modal_wrapper-js   text-white bg-blue-700 w-full md:w-1/2 mx-auto my-6 rounded-2xl flex flex-col gap-3 p-2">
+            <div class="flex items-center gap-1">
+                <div class="search  border-2 border-gray-50  h-9 rounded-lg md:w-30 cursor-pointer flex flex-row items-center text-xs searchModal">
+                    <img src="src/assets/rechercher.png" alt="" class="w-5 h-5 p-0.5 invert">
+                    <input type="search" placeholder="Rechercher par titre ou tag..." class="inputSearch placeholder:text-white w-full h-full outline-none" >
+                </div>  
+                <img src="./src/assets/x.png" alt="" class="w-5 h-5 p-0.5 cursor-pointer invert  close_modal-js">              
             </div>
 
-            <div class="article_modal_container-js">
-                <!-- tous les article trouvées après la recherche, apparettront ici -->
+
+            <div class="wrapper-js   flex flex-col gap-3">
+                <!-- Résultats fictifs -->
+                <div class="article_modal_container-js  space-y-2  custom-scrollbar-html  max-h-[65vh] overflow-y-scroll">
+                    <template id="tpl">
+                        <a href="" class="">
+                            <div class="result-item  hover:rounded-lg p-1 hover:bg-blue-900  grid grid-cols-1 md:grid-cols-5 gap-3">
+                                <span class="result-date md:text-right font-extralight      publishedAt">15 mai 2025</span>
+                                <span class="result-title col-span-4 font-bold     title">Comprendre JavaScript : les bases essentielles</span>
+                            </div>  
+                        </a>
+                    </template>                   
+                </div>
+                <p class="text-center inline mx-auto text-sm font-bold underline-offset-3 transition-all duration-2000"><span class="result_of_searching-js">10</span> résultats trouvés</p>
             </div>
+
         </div>
     </div>
 
@@ -97,7 +126,7 @@
             <!-- les articles recents ICI -->
         </div>
         <div class="text-center mt-8">
-            <a href="/src/public/archive.html" class="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">Voir tous les articles →</a>
+            <a href="/src/public/category.html" class="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">Voir tous les articles →</a>
         </div>
     </section>
  
@@ -123,29 +152,33 @@
             <img src="src/assets/commentaires.png" alt="" class="w-7">
             <span>Ce qu'ils disent</span>
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6  comment_container-js">
-            <!-- comments -->
+
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper comment_container-js">
+                <!-- Les commentaires ici -->
+            </div>
+            <!-- Navigation (flèches) -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <!-- Pagination (petits points) -->
+            <div class="swiper-pagination"></div>
         </div>
     </section>
 
     <!-- ==================== STATS (chiffres clés) ==================== -->
     <section class="bg-blue-600 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 text-center gap-6">
+        <div class="max-w-5xl mx-auto px-4 flex flex-wrap justify-between items-center text-center gap-6">
             <div>
-                <div class="text-4xl font-bold   articlesPub">150+</div>
+                <div class="text-4xl font-bold   "><span class="articlesPub">150</span>+</div>
                 <p>Articles publiés</p>
             </div>
             <div>
-                <div class="text-4xl font-bold   lecteurs">12k+</div>
+                <div class="text-4xl font-bold   "><span class="lecteurs">12k</span>+</div>
                 <p>Lecteurs</p>
             </div>
             <div>
-                <div class="text-4xl font-bold   auteurs">25+</div>
+                <div class="text-4xl font-bold   "><span class="auteurs">25</span>+</div>
                 <p>Auteurs</p>
-            </div>
-            <div>
-                <div class="text-4xl font-bold "><span class="noteMoyenne">4.8</span>★</div>
-                <p>Note moyenne</p>
             </div>
         </div>
     </section>
@@ -219,7 +252,7 @@
     </template>
 
     <template  id="comment_element-js">
-        <div class="bg-white p-6 rounded-lg shadow text-center">
+        <div class="bg-white p-6 rounded-lg shadow text-center swiper-slide">
             <p class="text-gray-600 italic    message">"J'ai beaucoup appris grâce aux tutoriels et aux échanges."</p>
             <p class="font-bold mt-4     auteur">Thomas Edison</p>
         </div>

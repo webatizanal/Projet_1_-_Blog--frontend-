@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="custom-scrollbar-html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,20 +26,27 @@
         <div class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
             <a href="/" class="hover:text-blue-400"><div class="text-2xl font-bold text-blue-600 tektur">DevEtDemain</div></a>
             <div class="flex gap-4 items-center">
-                <img src="../assets/rechercher.png" alt="" class="w-6 h-6">
-                <a href="#" class="text-gray-600 hover:text-blue-500">FB</a>
-                <a href="#" class="text-gray-600 hover:text-blue-500">X</a>
-                <a href="#" class="text-gray-600 hover:text-blue-500">IG</a>
-                <a href="/src/public/login.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Connexion</a>
+                <a href="#" class="text-gray-600 hover:text-blue-500">
+                    <img src="../assets/facebook.png" alt="" class="w-5">
+                </a>
+                <a href="#" class="text-gray-600 hover:text-blue-500">
+                    <img src="../assets/twitter.png" alt="" class="w-4">
+                </a>
+                <a href="#" class="text-gray-600 hover:text-blue-500">
+                    <img src="../assets/instagram.png" alt="" class="w-4">
+                </a>
+                <a href="/src/public/login.html" class="bg-blue-600 text-white p-0.5 rounded-full hover:bg-blue-700 transition">
+                    <img src="../assets/login.png" alt="" class="w-7 h-7 invert brightness-0">
+                </a>
             </div>
         </div>
 
         <!-- ==================== DEUXIÈME NAVBAR ==================== -->
         <div class="bg-gray-800 text-white py-3 px-6 flex flex-wrap justify-center gap-6">
-            <a href="/" class="hover:text-blue-400">Accueil</a>
-            <a href="/src/public/category.html?id=tech" class="hover:text-blue-400">Catégories ›</a>
-            <a href="/src/public/about.html" class="hover:text-blue-400">À propos</a>
-            <a href="/src/public/contact.html" class="hover:text-blue-400">Contact</a>
+            <a href="/" class="hover:text-blue-400 border-b-2 border-transparent hover:border-blue-400">Accueil</a>
+            <a href="/src/public/category.html?id=tech" class="hover:text-blue-400 border-b-2 border-transparent hover:border-blue-400">Catégories ›</a>
+            <a href="/src/public/about.html" class="hover:text-blue-400 border-b-2 border-transparent hover:border-blue-400">À propos</a>
+            <a href="/src/public/contact.html" class="hover:text-blue-400 border-b-2 border-transparent hover:border-blue-400">Contact</a>
         </div>  
     </header>
 
@@ -110,7 +117,7 @@
                             <img src="../assets/logout.png" alt="" class="w-5">
                         </button>
                     </h3>
-                    <button id="delete-account-btn" class=" delete cursor-pointer   bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">Supprimer mon compte</button>
+                    <button id="delete-account-btn" class="delete cursor-pointer   bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">Supprimer mon compte</button>
                     <p class="text-xs text-gray-500 mt-2">Cette action est irréversible. Tous vos articles seront également supprimés.</p>
                 </div>
             </div>

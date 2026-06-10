@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="custom-scrollbar-html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,16 +8,24 @@
     <link rel="icon" type="image/png" href="../assets/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pinyon+Script&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
     <script type="module" src="../logique_front/classes/Reading.js"></script>
+    <script type="module">
+        import { modal } from '../logique_front/fonctions/modal.js';
+        modal(); 
+    </script>
+    <link rel="stylesheet" href="../modal.css">
 </head>
 <body class="bg-gray-100">
     <header class="h-fit">
         <!-- ==================== PREMIÈRE NAVBAR ==================== -->
         <div class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
-            <a href="/" class="hover:text-blue-400"><div class="text-2xl tektur font-bold text-blue-600">DevEtDemain</div></a>
+            <a href="/" class="hover:text-blue-400">
+                <div class="text-2xl tektur font-bold text-blue-600  hidden md:block">DevEtDemain</div>
+                <img src="../assets/logo.jpg" alt="" class="w-8 h-8 rounded-2xl  md:hidden">
+            </a>
             <div class="flex gap-4 items-center">
                 <span class="md:border-2 md:border-gray-500 p-1 rounded-full md:w-30 cursor-pointer flex flex-row items-center text-xs   searchModal">
                     <img src="../assets/rechercher.png" alt="" class="w-6 h-6">
-                    <span class="hidden md:inline-block">Searching...</span>
+                    <span class="hidden md:inline-block">Ctrl+k</span>
                 </span>
 
                 <a href="#" class="text-gray-600 hover:text-blue-500">
@@ -45,18 +53,35 @@
     </header>
 
     <!-- Structure de la modale -->
-    <div class="modal-overlay" id="modal_container-js"  style="display:none">
-        <div class="modal_box-js">
-            <div class="header_modal">
-                <h2>Resultats de votre recherche (<span class="result_of_searching-js">5</span>)</h2>
-                <button class="close-btn font-bold text-black text-center flex items-center justify-center p-0.5 h-8 w-8 bg-gray-400 rounded-full text-3xl" id="close-btn">&times;</button>
+    <div class="modal_container-js" id="" style="display:none"> 
+        <div class="modal_wrapper-js   text-white bg-blue-700 w-full md:w-1/2 mx-auto my-6 rounded-2xl flex flex-col gap-3 p-2">
+            <div class="flex items-center gap-1">
+                <div class="search  border-2 border-gray-50  h-9 rounded-lg md:w-30 cursor-pointer flex flex-row items-center text-xs searchModal">
+                    <img src="../assets/rechercher.png" alt="" class="w-5 h-5 p-0.5 invert">
+                    <input type="search" placeholder="Rechercher par titre ou tag..." class="inputSearch placeholder:text-white w-full h-full outline-none" >
+                </div>  
+                <img src="../assets/x.png" alt="" class="w-5 h-5 p-0.5 cursor-pointer invert  close_modal-js">              
             </div>
 
-            <div class="article_modal_container-js">
-                <!-- tous les article trouvées après la recherche, apparettront ici -->
+
+            <div class="wrapper-js   flex flex-col gap-3">
+                <!-- Résultats fictifs -->
+                <div class="article_modal_container-js  space-y-2  custom-scrollbar-html  max-h-[65vh] overflow-y-scroll">
+                    <template id="tpl">
+                        <a href="" class="">
+                            <div class="result-item  hover:rounded-lg p-1 hover:bg-blue-900  grid grid-cols-1 md:grid-cols-5 gap-3">
+                                <span class="result-date md:text-right font-extralight      publishedAt">15 mai 2025</span>
+                                <span class="result-title col-span-4 font-bold     title">Comprendre JavaScript : les bases essentielles</span>
+                            </div>  
+                        </a>
+                    </template>                   
+                </div>
+                <p class="text-center inline mx-auto text-sm font-bold underline-offset-3 transition-all duration-2000"><span class="result_of_searching-js">10</span> résultats trouvés</p>
             </div>
+
         </div>
     </div>
+
 
 
 
@@ -78,22 +103,22 @@
             <h1 class="text-4xl md:text-5xl font-bold mb-4  bigTitle-js"></h1>
             <div class="flex flex-wrap items-center gap-4 text-gray-500 mb-6">
                 <p class="reading">
-                    <span>Par <strong class="auteur-js">Alex Martin</strong></span>
+                    <span>Par <strong class="auteur-js">  </strong></span>
                     <strong class="px-2">   ||   </strong>
-                    <span class="date-js">15 mars 2025  </span>
+                    <span class="date-js"></span>
                     <strong class="px-2">   ||   </strong>
-                    <span class="reaTime-js">12</span> min de lecture
+                    <span class="reaTime-js"></span> min de lecture
                     <strong class="px-2">   ||   </strong>
-                    <span class="views-js">1 234</span> vues
+                    <span class="views-js"></span> vues
                 </p>
 
             </div>
         </div>
 
         <!-- IMAGE DE COUVERTURE -->
-        <img src="https://picsum.photos/id/0/1200/600" alt="JavaScript illustration" class="cover-js w-full rounded-lg shadow-md mb-8">
+        <img src="" alt="image illustration" class="cover-js h-[35vh] md:h-[70vh] object-cover w-full rounded-lg shadow-md mb-8">
 
-
+ 
         <hr class="my-5">
 
         <!-- CONTENU DE L'ARTICLE -->
@@ -109,8 +134,8 @@
                 <img src="../assets/article4.jpg" alt="" class="w-32 h-32 rounded-full object-cover">
             </div>
             <div class="flex-1 text-center md:text-left">
-                <h3 class="text-xl font-bold mb-2  name-js">Alex Martin</h3>
-                <p class="text-gray-600 mb-3  bio-js">Développeur full-stack passionné par le web moderne. J'écris des tutoriels et des articles pour aider les débutants à progresser.</p>
+                <h3 class="text-xl font-bold mb-2  name-js"></h3>
+                <p class="text-gray-600 mb-3  biography"></p>
                 <a href="./category.html" class="text-blue-600 hover:underline  ">Voir tous ses articles →</a>
             </div>
         </div>
@@ -130,9 +155,9 @@
                             <div class="w-10 h-10 bg-gray-300 rounded-full">
                                 <img src="..." alt="" class="avatar   w-10 h-10 object-cover rounded-full">
                             </div>
-                            <div><span class="font-bold user_comment-js">Marie Dupont</span> <span class="text-sm text-gray-500 comment_date-js">2 jours ago</span></div>
+                            <div><span class="font-bold user_comment-js"></span> <span class="text-sm text-gray-500 comment_date-js"></span></div>
                         </div>
-                        <p class="text-gray-700  message_comment-js">Merci pour cet article super clair ! Les explications sont accessibles même pour un débutant. J'attends la suite avec impatience.</p>
+                        <p class="text-gray-700  message_comment-js"></p>
                     </div>
                 </template>
             </div>

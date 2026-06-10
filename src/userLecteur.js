@@ -97,5 +97,5 @@ export async function profile(){
             console.error('Erreur', result.status, result.error);
         }
     }
-    
+    document.querySelector('#delete-account-btn').addEventListener('click', deleteAccount)
 }

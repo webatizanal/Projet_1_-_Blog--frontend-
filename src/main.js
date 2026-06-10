@@ -11,6 +11,7 @@ const categoriesFetch = await apiRequest(`${config}/categories`, 'GET', {'Conten
 const commentsFetch = await apiRequest(`${config}/comments`, 'GET', {'Content-Type': 'application/json'})
 const partnershipFetch = await apiRequest(`${config}/partnerships`, 'GET', {'Content-Type': 'application/json'})
 const staffFetch = await apiRequest(`${config}/staff`, 'GET', {'Content-Type': 'application/json'})
+const statsFetch = await apiRequest(`${config}/users/stats`, 'GET', {'Content-Type': 'application/json'})
 
 // ==================== PAGE HOME ====================
 export async function home() {
@@ -29,33 +30,19 @@ export async function home() {
 
     // Les chiffres
     const articlesPub = document.querySelector('.articlesPub')
+    articlesPub.innerText = statsFetch.articlesPublished
     const lecteurs = document.querySelector('.lecteurs')
-    const auteurs = document.querySelector('.auteurs')
-    const noteMoyenne = document.querySelector('.noteMoyenne')
+    lecteurs.innerText = statsFetch.lecteurs
+    const authors = document.querySelector('.auteurs')
+    authors.innerText = statsFetch.auteurs
 
     // Les articles à la une
     const laUne = top(5, 'views', articlesFetch)  // Avant d'appeler cette fonction on doit recupere sur une periode, les articles recents
     const showStatsLaune = [
-        [
-            {tagName : 'a'},
-            {contentType : 'href'},  // href/src/text
-            {prop : ''}  
-        ],
-        [
-            {tagName : 'img'},
-            {contentType : 'src'},  // href/src/text
-            {prop : 'featuredImage'}  
-        ],
-        [
-            {tagName : 'h3'},
-            {contentType : 'text'},  // href/src/text
-            {prop : 'title'}  
-        ],
-        [
-            {tagName : 'p.resume'},
-            {contentType : 'text'},  // href/src/text
-            {prop : 'excerpt'}
-        ]
+        [ {tagName : 'a'}, {contentType : 'href'}, {prop : ''} ],
+        [ {tagName : 'img'}, {contentType : 'src'}, {prop : 'featuredImage'} ],
+        [ {tagName : 'h3'}, {contentType : 'text'}, {prop : 'title'} ],
+        [ {tagName : 'p.resume'}, {contentType : 'text'}, {prop : 'excerpt'} ]
     ]
     Array.from(laUne).forEach((art)=>{
         new Article(art, showStatsLaune, laUneTpl, laUneContainer)
@@ -81,37 +68,12 @@ export async function home() {
     // les aticles recents  
     const recentArticles = recently(6, articlesFetch)
     const showStatsRecently = [
-        [
-            {tagName : 'a'},
-            {contentType : 'href'},  // href/src/text
-            {prop : ''}  
-        ],
-        [
-            {tagName : 'img'},
-            {contentType : 'src'},  // href/src/text
-            {prop : 'featuredImage'}  
-        ],
-        [
-            {tagName : 'span.cat'},
-            {contentType : 'text'},  // href/src/text
-            {prop : 'categoryId'},
-            {sousProp : 'name'},
-        ],
-        [
-            {tagName : 'span.readTime'},
-            {contentType : 'text'},  // href/src/text
-            {prop : 'readingTime'}  
-        ],
-        [
-            {tagName : 'h2'},
-            {contentType : 'text'},  // href/src/text
-            {prop : 'title'}
-        ],
-        [
-            {tagName : 'p.resume'},
-            {contentType : 'text'},  // href/src/text
-            {prop : 'excerpt'}
-        ]
+        [ {tagName : 'a'}, {contentType : 'href'}, {prop : ''} ],
+        [ {tagName : 'img'}, {contentType : 'src'}, {prop : 'featuredImage'} ],
+        [ {tagName : 'span.cat'}, {contentType : 'text'}, {prop : 'categoryId'}, {sousProp : 'name'} ],
+        [ {tagName : 'span.readTime'}, {contentType : 'text'}, {prop : 'readingTime'} ],
+        [ {tagName : 'h2'}, {contentType : 'text'}, {prop : 'title'} ],
+        [ {tagName : 'p.resume'}, {contentType : 'text'}, {prop : 'excerpt'} ]
     ]
     recentArticles.forEach((a)=> {
         new Article(a, showStatsRecently, recentArticleElement, recentArticleContainer)
@@ -152,17 +114,8 @@ export async function home() {
 
     // Les commentaires
     const showStatsComment = [
-        [
-            {tagName : 'p.auteur'},
-            {contentType : 'text'},  // href/src/text
-            {prop : 'userId'},
-            {sousProp : 'username'},
-        ],
-        [
-            {tagName : 'p.message'},
-            {contentType : 'text'},  // href/src/text
-            {prop : 'content'}
-        ]
+        [ {tagName : 'p.auteur'}, {contentType : 'text'}, {prop : 'userId'}, {sousProp : 'username'} ],
+        [ {tagName : 'p.message'}, {contentType : 'text'}, {prop : 'content'} ]
     ]
     commentsFetch.forEach((a)=> {
         new Article(a, showStatsComment, commentElement, commentContainer)
@@ -170,174 +123,97 @@ export async function home() {
 
     // Partnerships
     const showStatsPartnership = [
-        [
-            {tagName : 'img'},
-            {contentType : 'src'},  // href/src/text
-            {prop : 'logoUrl'}
-        ],
-        [
-            {tagName : 'span.name'},
-            {contentType : 'text'},  // href/src/text
-            {prop : 'name'}
-        ]
+        [ {tagName : 'img'}, {contentType : 'src'}, {prop : 'logoUrl'} ],
+        [ {tagName : 'span.name'}, {contentType : 'text'}, {prop : 'name'} ]
     ]
     partnershipFetch.forEach((a)=> {
         new Article(a, showStatsPartnership, partnershipElement, partnershipContainer)
     })
 }
 
-// ==================== PAGE ARCHIVE ====================
-export async function archive() {
-    // Déclarations 
-    const archiveElement = document.querySelector('#archive_element-js').content
-    const archiveContainer = document.querySelector('.archive_container-js')
-    const articlesArchiver = articlesFetch
-    const selectCategory = document.querySelector('.selectCategory')
-    const showStatsArchive = [
-        [
-            {tagName : 'div'},
-            {contentType : 'data-categoryId'},  // href/src/text
-            {prop : ''}   
-        ],
-        [
-            {tagName : 'a'},
-            {contentType : 'href'},  // href/src/text
-            {prop : ''}  
-        ],
-        [
-            {tagName : 'img'},
-            {contentType : 'src'},  // href/src/text
-            {prop : 'featuredImage'}  
-        ],
-        [
-            {tagName : 'span.publishedAt'},
-            {contentType : 'text'},  // href/src/text
-            {prop : 'publishedAt'}  
-        ],
-        [
-            {tagName : 'span.cat'},
-            {contentType : 'text'},  // href/src/text
-            {prop : 'categoryId'},
-            {sousProp : 'name'},
-        ],
-        [
-            {tagName : 'span.readTime'},
-            {contentType : 'text'},  // href/src/text
-            {prop : 'readingTime'}  
-        ],
-        [
-            {tagName : 'h2'},
-            {contentType : 'text'},  // href/src/text
-            {prop : 'title'}
-        ],
-        [
-            {tagName : 'p.resume'},
-            {contentType : 'text'},  // href/src/text
-            {prop : 'excerpt'}
-        ]
-    ]
-
-    // categories
-    categoriesFetch.forEach((cat)=>{
-        let newOption = document.createElement('option')
-        newOption.innerText = cat.name
-        newOption.classList.add('catOption')
-        newOption.setAttribute('id', `${cat._id}`)
-        // if(categoriesFetch[0]._id === `${cat._id}`){
-        //     newOption.classList.add('selected')
-        // } 
-        selectCategory.appendChild(newOption)
-    })
-
-    articlesArchiver.forEach((a)=> {
-        new Article(a, showStatsArchive, archiveElement, archiveContainer)
-    })
-    readTimeNormalize(archiveContainer, '.archive_element', 'span.readTime')  
-    archiveContainer.querySelectorAll('.publishedAt').forEach((el)=>{
-        const ancienneDate = el.innerText
-        el.innerHTML = dateFormat(ancienneDate)
-    })
-
-    // const pagination = new Pagination(
-    //     4,                              
-    //     archiveContainer,             
-    //     '.archive_element',           
-    //     selectCategory,           
-    //     '.catOption',              
-    //     '.paginationBox'             
-    // );
-}
-
 // ==================== PAGE CATEGORY ====================
 export async function category() {
-    const recentArticleContainer = document.querySelector('.recent_article_container-js')
-    const recentArticleElement = document.querySelector('#recent_article_element-js').content
+    const articleContainer = document.querySelector('.recent_article_container-js')
+    const articleElement = document.querySelector('#recent_article_element-js').content
     const showStatsaAticleByCat = [
-        [
-            {tagName : 'a'},
-            {contentType : 'href'},  // href/src/text
-            {prop : ''}  
-        ],
-        [
-            {tagName : 'img'},
-            {contentType : 'src'},  // href/src/text
-            {prop : 'featuredImage'}  
-        ],
-        [
-            {tagName : 'span.cat'},
-            {contentType : 'text'},  // href/src/text
-            {prop : 'categoryId'},
-            {sousProp : 'name'},
-        ],
-        [
-            {tagName : 'span.readTime'},
-            {contentType : 'text'},  // href/src/text
-            {prop : 'readingTime'}  
-        ],
-        [
-            {tagName : 'h2'},
-            {contentType : 'text'},  // href/src/text
-            {prop : 'title'}
-        ],
-        [
-            {tagName : 'p.resume'},
-            {contentType : 'text'},  // href/src/text
-            {prop : 'excerpt'}
-        ]
+        [ {tagName : 'a'}, {contentType : 'href'}, {prop : ''} ],
+        [ {tagName : '#idArticle'}, {contentType : 'data-categoryid'}, {prop : ''} ],
+        [ {tagName : '#idArticle'}, {contentType : 'data-authorid'}, {prop : ''} ],
+        [ {tagName : 'img'}, {contentType : 'src'}, {prop : 'featuredImage'} ],
+        [ {tagName : 'span.cat'}, {contentType : 'text'}, {prop : 'categoryId'}, {sousProp : 'name'} ],
+        [ {tagName : 'span.readTime'}, {contentType : 'text'}, {prop : 'readingTime'} ],
+        [ {tagName : 'h2'}, {contentType : 'text'}, {prop : 'title'} ],
+        [ {tagName : 'p.resume'}, {contentType : 'text'}, {prop : 'excerpt'} ]
     ]
     const categoryElement = document.querySelector('#category_element-js').content
     const categoryContainer = document.querySelector('.category_container-js')
-
+    const auteurElement = document.querySelector('#auteur_element-js').content
+    const auteurContainer = document.querySelector('.auteur_container-js')
 
     articlesFetch.forEach((a)=> { 
-        new Article(a, showStatsaAticleByCat, recentArticleElement, recentArticleContainer)
+        new Article(a, showStatsaAticleByCat, articleElement, articleContainer)
     })
 
-    // création des filtres
+    // création des filtres (Categories)
+    // ======================================================================
     const showStatsCategory = [
-        [
-            {tagName : 'label'},
-            {contentType : 'id'},  // href/src/text
-            {prop : ''}  
-        ],
-        [
-            {tagName : 'span.name'},
-            {contentType : 'text'},  // href/src/text
-            {prop : 'name'}  
-        ],
-        [
-            {tagName : 'span.attached'},
-            {contentType : 'text'},  // href/src/text
-            {prop : 'attached_article'}
-        ]
+        [ {tagName : 'label'}, {contentType : 'id'}, {prop : ''} ],
+        [ {tagName : 'span.name'}, {contentType : 'text'}, {prop : 'name'} ]
     ]
-
     let allAttachedArticle = 0
-    categoriesFetch.forEach((a)=> {
-        if(a.attached_article) allAttachedArticle += a.attached_article
-        new Article(a, showStatsCategory, categoryElement, categoryContainer)
+    categoriesFetch.forEach((c)=> {
+        new Article(c, showStatsCategory, categoryElement, categoryContainer)
     })
-    categoryContainer.querySelector('.allAttached .count').innerText = allAttachedArticle
+    categoryContainer.querySelectorAll('label').forEach((label)=>{
+        if(label.getAttribute('id') === 'all') return
+        let articleAtached = 0
+
+        articlesFetch.forEach((a)=>{
+            if(label.getAttribute('id') === a.categoryId._id){
+                articleAtached++
+            }
+        })
+
+        label.querySelector('span.attached').innerText = articleAtached
+        allAttachedArticle += articleAtached
+    })
+    categoryContainer.querySelector('.allAttached .countCategory').innerText = allAttachedArticle
+
+
+    // création des filtres (Auteur)
+    // ======================================================================
+    const showStatsAuteur = [
+        [ {tagName : 'label'}, {contentType : 'id'}, {prop : ''} ],
+        [ {tagName : 'span.username'}, {contentType : 'text'}, {prop : 'fullName'} ]
+    ]
+    let allAttachedAuteur = 0
+    staffFetch.forEach((u)=> {
+        new Article(u, showStatsAuteur, auteurElement, auteurContainer)
+    })
+    auteurContainer.querySelectorAll('label').forEach((label)=>{
+        if(label.getAttribute('id') === 'all') return
+        let articleAtached = 0
+
+        articlesFetch.forEach((a)=>{
+            if(label.getAttribute('id') === a.authorId){
+                articleAtached++
+            }
+        })
+
+        label.querySelector('span.attached').innerText = articleAtached
+        allAttachedAuteur += articleAtached
+    })
+    auteurContainer.querySelector('.allAttached .countAuteur').innerText = allAttachedAuteur
+
+
+    const paginationContainer = document.querySelector('.paginationBox')
+    const pagination = new Pagination(
+        6,                              
+        articleContainer,             
+        categoryContainer,           
+        auteurContainer,           
+        paginationContainer             
+    );
 }
 
 // ==================== PAGE À PROPOS ====================
@@ -345,25 +221,19 @@ export async function about() {
     const staffElement = document.querySelector('#staff_element-js').content
     const staffContainer = document.querySelector('.staff_container-js')
     const showStatsaStaff = [
-        [
-            {tagName : 'img'},
-            {contentType : 'src'},  // href/src/text
-            {prop : 'userId'},
-            {sousProp : 'avatarUrl'},  
-        ],
-        [
-            {tagName : 'h3'},
-            {contentType : 'text'},  // href/src/text
-            {prop : 'userId'},
-            {sousProp : 'username'}
-        ],
-        [
-            {tagName : 'p.bio'},
-            {contentType : 'text'},  // href/src/text
-            {prop : 'bio'}
-        ]
+        [ {tagName : 'img'}, {contentType : 'src'}, {prop : 'authorAvatar'} ],
+        [ {tagName : 'h3'}, {contentType : 'text'}, {prop : 'fullName'} ],
+        [ {tagName : 'p.bio'}, {contentType : 'text'}, {prop : 'bio'} ]
     ]
     staffFetch.forEach((a)=> {
         new Article(a, showStatsaStaff, staffElement, staffContainer)
     })
+
+    // Les chiffres
+    const articlesPub = document.querySelector('.articlesPub')
+    articlesPub.innerText = statsFetch.articlesPublished
+    const lecteurs = document.querySelector('.lecteurs')
+    lecteurs.innerText = statsFetch.lecteurs
+    const authors = document.querySelector('.auteurs')
+    authors.innerText = statsFetch.auteurs
 }

@@ -1,0 +1,43 @@
+
+.modal_container-js{
+    position: fixed;
+    z-index: 9999;  /* Plus haut possible */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;      /* Pas besoin de height/width, top/left/right/bottom suffisent */
+    
+    /* Background sombre avec blur */
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    
+    /* Centrer le message */
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    
+    /* Animation optionnelle */
+    animation: fadeIn 0.3s ease;
+}
+
+/* Animation d'apparition */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* Utilie pour empecher le scroll en dessous du Overlay de la boîte modale */
+body.modal-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
+
+.search{
+    width: 100%;
+}

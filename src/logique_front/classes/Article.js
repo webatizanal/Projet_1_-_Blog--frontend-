@@ -41,9 +41,13 @@ export default class Article {
                 return;
             }
             switch (contentType) {
-                case "data-categoryId":
+                case "data-categoryid":
                     const catId = this.article.categoryId._id;
                     element.setAttribute('data-categoryid', `${catId}`);
+                    break;
+                case "data-authorid":
+                    const authorId = this.article.authorId;
+                    element.setAttribute('data-authorid', `${authorId}`);
                     break;
                 case "id":
                     element.setAttribute('id', `${this.article._id}`);

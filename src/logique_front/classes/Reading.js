@@ -9,93 +9,23 @@ const id = url.searchParams.get('id')
 const getOne = await apiRequest(`${config}/articles/${id}`, 'GET', {'Content-Type': 'application/json'})
 const comments = await apiRequest(`${config}/comments`, 'GET', {'Content-Type': 'application/json'})
 const showStatInBalise = [
-    [
-        {tagName : '.category-js'},
-        {contentType : 'text'}, 
-        {prop : 'categoryId'},
-        {sousProp : 'name'}
-    ],
-    [
-        {tagName : '.title-js'},
-        {contentType : 'text'}, 
-        {prop : 'title'}
-    ],
-    [
-        {tagName : '.bigTitle-js'},
-        {contentType : 'text'}, 
-        {prop : 'title'}
-    ],
-    [
-        {tagName : '.auteur-js'},
-        {contentType : 'text'}, 
-        {prop : 'userId'},
-        {sousProp : 'username'}
-    ],
-    [
-        {tagName : '.date-js'},
-        {contentType : 'text'}, 
-        {prop : 'publishedAt'}
-    ],
-    [
-        {tagName : '.reaTime-js'},
-        {contentType : 'text'}, 
-        {prop : 'readingTime'}
-    ],
-    [
-        {tagName : '.views-js'},
-        {contentType : 'text'}, 
-        {prop : 'views'}
-    ],
-    [
-        {tagName : '.cover-js'},
-        {contentType : 'src'}, 
-        {prop : 'featuredImage'}
-    ],
-    [
-        {tagName : '.content-js'},
-        {contentType : 'text'}, 
-        {prop : 'content'}
-    ],
-    [
-        {tagName : '.name-js'},
-        {contentType : 'text'}, 
-        {prop : 'userId'},
-        {sousProp : 'username'}
-    ],
-    [
-        {tagName : '.bio-js'},
-        {contentType : 'text'}, 
-        {prop : 'bio'}
-    ],
-    [
-        {tagName : '.bio-js'},
-        {contentType : 'text'}, 
-        {prop : 'bio'}
-    ],
+    [ {tagName : '.category-js'}, {contentType : 'text'}, {prop : 'categoryId'}, {sousProp : 'name'} ],
+    [ {tagName : '.title-js'}, {contentType : 'text'}, {prop : 'title'} ],
+    [ {tagName : '.bigTitle-js'}, {contentType : 'text'}, {prop : 'title'} ],
+    [ {tagName : '.auteur-js'}, {contentType : 'text'}, {prop : 'authorId'}, {sousProp : 'fullName'} ],
+    [ {tagName : '.date-js'}, {contentType : 'text'}, {prop : 'publishedAt'} ],
+    [ {tagName : '.reaTime-js'}, {contentType : 'text'}, {prop : 'readingTime'} ],
+    [ {tagName : '.views-js'}, {contentType : 'text'}, {prop : 'views'} ],
+    [ {tagName : '.cover-js'}, {contentType : 'src'}, {prop : 'featuredImage'} ],
+    [ {tagName : '.content-js'}, {contentType : 'text'}, {prop : 'content'} ],
+    [ {tagName : '.name-js'}, {contentType : 'text'}, {prop : 'authorId'}, {sousProp : 'fullName'} ],
+    [ {tagName : '.biography'}, {contentType : 'text'}, {prop : 'authorId'}, {sousProp : 'bio'} ]
 ]            
 const showStatsComment = [
-    [
-        {tagName : '.user_comment-js'},
-        {contentType : 'text'},  // href/src/text
-        {prop : 'userId'},
-        {sousProp : 'username'},
-    ],
-    [
-        {tagName : 'img.avatar'},
-        {contentType : 'src'},  // href/src/text
-        {prop : 'userId'},
-        {sousProp : 'avatarUrl'},
-    ],
-    [
-        {tagName : '.comment_date-js'},
-        {contentType : 'text'},  // href/src/text
-        {prop : 'createdAt'}
-    ],
-    [
-        {tagName : '.message_comment-js'},
-        {contentType : 'text'},  // href/src/text
-        {prop : 'content'}
-    ]
+    [ {tagName : '.user_comment-js'}, {contentType : 'text'}, {prop : 'userId'}, {sousProp : 'username'} ],
+    [ {tagName : 'img.avatar'}, {contentType : 'src'}, {prop : 'userId'}, {sousProp : 'avatarUrl'} ],
+    [ {tagName : '.comment_date-js'}, {contentType : 'text'}, {prop : 'createdAt'} ],
+    [ {tagName : '.message_comment-js'}, {contentType : 'text'}, {prop : 'content'} ]
 ]
 const tagContainer = document.querySelector('.tag_container-js')        
 const commentElement = document.querySelector('#comment_element-js').content      

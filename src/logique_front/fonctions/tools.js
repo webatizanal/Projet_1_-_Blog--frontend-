@@ -138,7 +138,7 @@ export function message(type, message, elementAdjacent, position) {
     // ⏱️ Disparaît après 3 secondes
     setTimeout(() => {
         paraMessage.remove();
-    }, 3000);
+    }, 5000);
 }
 
 

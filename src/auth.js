@@ -43,11 +43,11 @@ async function login(e){
         // const tokenData = JSON.parse(localStorage.getItem('token'));
             
         if (userRole === 'admin') {
-            window.location.href = '/src/admin/users.html';
+            window.location.href = '/src/admin/users';
         } else if (userRole === 'auteur'){
-            window.location.href = '/src/user/dashboard.html';
+            window.location.href = '/src/user/dashboard';
         }else{
-            window.location.href = '/src/lecteur/profile.html';
+            window.location.href = '/src/lecteur/profile';
         }
 
     } else {
@@ -70,11 +70,11 @@ export async function loginRequest() {
             let dashboardPath = '';
             
             if (userRole === 'admin') {
-                dashboardPath = '/src/admin/users.html';
+                dashboardPath = '/src/admin/users';
             } else if (userRole === 'auteur'){
-                dashboardPath = '/src/user/dashboard.html';
+                dashboardPath = '/src/user/dashboard';
             }else{
-                dashboardPath = '/src/lecteur/profile.html';
+                dashboardPath = '/src/lecteur/profile';
             }
 
             console.log('Utilisateur connecté !')
@@ -93,7 +93,6 @@ export async function loginRequest() {
         form.addEventListener('submit', login);
     }
 }
-
 
  
 /**
@@ -120,7 +119,7 @@ async function signup(e){
             'beforebegin'
         )
 
-        window.location.href = '/src/user/login.html'
+        window.location.href = '/src/public/login';
     } else {
         console.error('Erreur', result.status, result.error);
         message(
@@ -144,14 +143,14 @@ export function logout(){
         window.localStorage.removeItem('token')
     }
 
-    window.location.href = '/src/public/login.html'
+    window.location.href = '/src/public/login'
 }
 
 
 export async function tokenCheck() {
     const tokenData = JSON.parse(localStorage.getItem('token'));
     if (!tokenData || !tokenData.token) {
-        window.location.href = '/src/public/login.html';
+        window.location.href = '/src/public/login';
         return;
     }
 
@@ -167,6 +166,6 @@ export async function tokenCheck() {
     } else {
         console.error('Token invalide');
         localStorage.removeItem('token');
-        window.location.href = '/src/public/login.html';
+        window.location.href = '/src/public/login';
     }
 } 

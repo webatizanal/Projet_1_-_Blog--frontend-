@@ -185,7 +185,7 @@ export default class Pagination {
         if (this.totalPages <= 1) return;
         
         // Bouton precedent
-        const prevBtn = this.createButton('« Précédent', this.currentPage > 1, () => {
+        const prevBtn = this.createButton('<<', this.currentPage > 1, () => {
             if (this.currentPage > 1) {
                 this.currentPage--;
                 this.render();
@@ -208,7 +208,7 @@ export default class Pagination {
         }
         
         // Bouton suivant
-        const nextBtn = this.createButton('Suivant »', this.currentPage < this.totalPages, () => {
+        const nextBtn = this.createButton('>>', this.currentPage < this.totalPages, () => {
             if (this.currentPage < this.totalPages) {
                 this.currentPage++;
                 this.render();
@@ -225,7 +225,7 @@ export default class Pagination {
         const btn = document.createElement('a');
         btn.href = '#';
         btn.textContent = text;
-        btn.className = 'px-4 py-2 border rounded-lg mx-1';
+        btn.className = 'px-2 py-1 border rounded-lg mx-1';
         
         if (!enabled) {
             btn.classList.add('opacity-50', 'cursor-not-allowed');

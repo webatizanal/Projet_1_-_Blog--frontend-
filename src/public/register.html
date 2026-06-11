@@ -5,12 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription - Mon Blog</title>
     <link rel="stylesheet" href="/src/style.css">
-    <link rel="icon" type="image/png" href="../assets/favicon.ico"> 
+    <link rel="icon" type="image/png" href="../assets/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pinyon+Script&family=Tektur:wght@400..900&display=swap" rel="stylesheet"> 
     <script type="module">
         import { logoutRequest } from '../auth.js';
         logoutRequest();
     </script>
+    <script type="module">
+        import { modal } from '../logique_front/fonctions/modal.js';
+        modal(); 
+    </script>
+    <link rel="stylesheet" href="../modal.css">
 </head>
 <body class="bg-gray-100">
 
@@ -22,6 +27,11 @@
                 <img src="../assets/logo.jpg" alt="" class="w-8 h-8 rounded-2xl  md:hidden">
             </a>
             <div class="flex gap-4 items-center">
+                <span class="md:border-2 md:border-gray-500 p-1 rounded-full md:w-30 cursor-pointer flex flex-row items-center text-xs   searchModal">
+                    <img src="../assets/rechercher.png" alt="" class="w-6 h-6">
+                    <span class="hidden md:inline-block">Ctrl+k</span>
+                </span>
+
                 <a href="#" class="text-gray-600 hover:text-blue-500">
                     <img src="../assets/facebook.png" alt="" class="w-5">
                 </a>
@@ -38,13 +48,43 @@
         </div>
 
         <!-- ==================== DEUXIÈME NAVBAR ==================== -->
-        <div class="bg-gray-800 text-white py-3 px-6 flex flex-wrap justify-center gap-6">
+        <div class="bg-gray-800 text-sm md:text-base text-white py-3 px-6 flex flex-wrap justify-center gap-6   navLink">
             <a href="/" class="hover:text-blue-400 hover:border-b-2">Accueil</a>
             <a href="/src/public/category.html?id=tech" class="hover:text-blue-400 hover:border-b-2 ">Catégories ›</a>
             <a href="/src/public/about.html" class="hover:text-blue-400 hover:border-b-2">À propos</a>
-            <a href="/src/public/contact.html" class="hover:text-blue-400 border-b-2 border-transparent hover:border-blue-400">Contact</a>
+            <a href="/src/public/contact.html" class="border-b-2">Contact</a>
         </div>  
     </header>
+
+    <!-- Structure de la modale -->
+    <div class="modal_container-js" id="" style="display:none"> 
+        <div class="modal_wrapper-js   text-white bg-blue-700 w-full md:w-1/2 mx-auto my-6 rounded-2xl flex flex-col gap-3 p-2">
+            <div class="flex items-center gap-1">
+                <div class="search  border-2 border-gray-50  h-9 rounded-lg md:w-30 cursor-pointer flex flex-row items-center text-xs searchModal">
+                    <img src="../assets/rechercher.png" alt="" class="w-5 h-5 p-0.5 invert">
+                    <input type="search" placeholder="Rechercher par titre ou tag..." class="inputSearch placeholder:text-white w-full h-full outline-none" >
+                </div>  
+                <img src="../assets/x.png" alt="" class="w-5 h-5 p-0.5 cursor-pointer invert  close_modal-js">              
+            </div>
+
+
+            <div class="wrapper-js   flex flex-col gap-3">
+                <!-- Résultats fictifs -->
+                <div class="article_modal_container-js  space-y-2  custom-scrollbar-html  max-h-[65vh] overflow-y-scroll">
+                    <template id="tpl">
+                        <a href="" class="">
+                            <div class="result-item  hover:rounded-lg p-1 hover:bg-blue-900  grid grid-cols-1 md:grid-cols-5 gap-3">
+                                <span class="result-date md:text-right font-extralight      publishedAt">15 mai 2025</span>
+                                <span class="result-title col-span-4 font-bold     title">Comprendre JavaScript : les bases essentielles</span>
+                            </div>  
+                        </a>
+                    </template>                   
+                </div>
+                <p class="text-center inline mx-auto text-sm font-bold underline-offset-3 transition-all duration-2000"><span class="result_of_searching-js">10</span> résultats trouvés</p>
+            </div>
+
+        </div>
+    </div>
 
     <div class="flex justify-center items-center min-h-[80vh]">
         <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">

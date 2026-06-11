@@ -12,6 +12,7 @@ const showStatInBalise = [
     [ {tagName : '.category-js'}, {contentType : 'text'}, {prop : 'categoryId'}, {sousProp : 'name'} ],
     [ {tagName : '.title-js'}, {contentType : 'text'}, {prop : 'title'} ],
     [ {tagName : '.bigTitle-js'}, {contentType : 'text'}, {prop : 'title'} ],
+    [ {tagName : '.avatar_author'}, {contentType : 'src'}, {prop : 'authorId'}, {sousProp : 'authorAvatar'} ],
     [ {tagName : '.auteur-js'}, {contentType : 'text'}, {prop : 'authorId'}, {sousProp : 'fullName'} ],
     [ {tagName : '.date-js'}, {contentType : 'text'}, {prop : 'publishedAt'} ],
     [ {tagName : '.reaTime-js'}, {contentType : 'text'}, {prop : 'readingTime'} ],

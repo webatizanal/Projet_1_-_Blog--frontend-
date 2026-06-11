@@ -114,7 +114,7 @@ async function signup(e){
         console.log('Inscription réussie', result.data);
         message(
             result.status, 
-            'Connexion réussie !',
+            'Inscription réussie !',
             form,
             'beforebegin'
         )
@@ -124,7 +124,7 @@ async function signup(e){
         console.error('Erreur', result.status, result.error);
         message(
             result.status, 
-            'Connexion échouée !',
+            'Inscription échouée !',
             form,
             'beforebegin'
         )

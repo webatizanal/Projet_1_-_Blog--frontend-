@@ -15,10 +15,11 @@
         import { modal } from '../logique_front/fonctions/modal.js';
         modal(); 
     </script>
+    <script type="module" src="../logique_front/fonctions/responsive.js"></script>
     <link rel="stylesheet" href="../modal.css">
 </head>
 <body class="bg-gray-100">
-    <header class="h-fit">
+    <header class="h-fit     navbar fixed top-0 left-0 w-full bg-white shadow-md transition-transform duration-300 translate-y-0 z-50">
         <!-- ==================== PREMIÈRE NAVBAR ==================== -->
         <div class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
             <a href="/" class="hover:text-blue-400">
@@ -86,7 +87,7 @@
     </div>
 
 
-    <main class="max-w-4xl mx-auto py-12 px-4">
+    <main class="nextToNavbar  max-w-4xl mx-auto py-12 px-4">
         <!-- Histoire -->
         <div class="text-center mb-12">
             <h1 class="text-4xl font-bold mb-4">À propos de DevEtDemain</h1>

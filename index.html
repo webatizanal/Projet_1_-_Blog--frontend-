@@ -15,6 +15,7 @@
         import { modal } from './src/logique_front/fonctions/modal.js';
         modal(); 
     </script>
+    <script type="module" src="src/logique_front/fonctions/responsive.js"></script>
     <link rel="icon" type="image/png" href="./src/assets/favicon.ico">
 
     <!-- Caroucel- Swiper (CSS & JS) -->
@@ -25,44 +26,46 @@
 </head>
 <body class="bg-gray-100"> 
 
-    <header class="h-fit">
-        <!-- ==================== PREMIÈRE NAVBAR ==================== -->
-        <div class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
-            <a href="/" class="hover:text-blue-400">
-                <div class="text-2xl tektur font-bold text-blue-600  hidden md:block">DevEtDemain</div>
-                <img src="src/assets/logo.jpg" alt="" class="w-8 h-8 rounded-2xl  md:hidden">
-            </a>
-            <div class="flex gap-4 items-center">
-                <span class="md:border-2 md:border-gray-500 p-1 rounded-full md:w-30 cursor-pointer flex flex-row items-center text-xs   searchModal">
-                    <img src="src/assets/rechercher.png" alt="" class="w-6 h-6">
-                    <span class="hidden md:inline-block">Ctrl+k</span>
-                </span>
+    <header class="h-fit ">
+        <div class="navbar fixed top-0 left-0 w-full bg-white shadow-md transition-transform duration-300 translate-y-0 z-50">
+            <!-- ==================== PREMIÈRE NAVBAR ==================== -->
+            <div class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
+                <a href="/" class="hover:text-blue-400">
+                    <div class="text-2xl tektur font-bold text-blue-600  hidden md:block">DevEtDemain</div>
+                    <img src="src/assets/logo.jpg" alt="" class="w-8 h-8 rounded-2xl  md:hidden">
+                </a>
+                <div class="flex gap-4 items-center">
+                    <span class="md:border-2 md:border-gray-500 p-1 rounded-full md:w-30 cursor-pointer flex flex-row items-center text-xs   searchModal">
+                        <img src="src/assets/rechercher.png" alt="" class="w-6 h-6">
+                        <span class="hidden md:inline-block">Ctrl+k</span>
+                    </span>
 
-                <a href="#" class="text-gray-600 hover:text-blue-500">
-                    <img src="src/assets/facebook.png" alt="" class="w-5">
-                </a>
-                <a href="#" class="text-gray-600 hover:text-blue-500">
-                    <img src="src/assets/twitter.png" alt="" class="w-4">
-                </a>
-                <a href="#" class="text-gray-600 hover:text-blue-500">
-                    <img src="src/assets/instagram.png" alt="" class="w-4">
-                </a>
-                <a href="/src/public/login.html" class="bg-blue-600 text-white p-0.5 rounded-full hover:bg-blue-700 transition">
-                    <img src="src/assets/login.png" alt="" class="w-7 h-7 invert brightness-0">
-                </a>
+                    <a href="#" class="text-gray-600 hover:text-blue-500">
+                        <img src="src/assets/facebook.png" alt="" class="w-5">
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-blue-500">
+                        <img src="src/assets/twitter.png" alt="" class="w-4">
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-blue-500">
+                        <img src="src/assets/instagram.png" alt="" class="w-4">
+                    </a>
+                    <a href="/src/public/login.html" class="bg-blue-600 text-white p-0.5 rounded-full hover:bg-blue-700 transition">
+                        <img src="src/assets/login.png" alt="" class="w-7 h-7 invert brightness-0">
+                    </a>
+                </div>
             </div>
-        </div>
 
-        <!-- ==================== DEUXIÈME NAVBAR ==================== -->
-        <div class="bg-gray-800 text-sm md:text-base text-white py-3 px-6 flex flex-wrap justify-center gap-6   navLink">
-            <a href="/" class=" border-b-2 ">Accueil</a>
-            <a href="/src/public/category.html?id=tech" class="hover:text-blue-400 hover:border-b-2">Catégories ›</a>
-            <a href="/src/public/about.html" class="hover:text-blue-400 hover:border-b-2">À propos</a>
-            <a href="/src/public/contact.html" class="hover:text-blue-400 hover:border-b-2">Contact</a>
-        </div>  
-        
+            <!-- ==================== DEUXIÈME NAVBAR ==================== -->
+            <div class="bg-gray-800 text-sm md:text-base text-white py-3 px-6 flex flex-wrap justify-center gap-6   navLink">
+                <a href="/" class=" border-b-2 ">Accueil</a>
+                <a href="/src/public/category.html?id=tech" class="hover:text-blue-400 hover:border-b-2">Catégories ›</a>
+                <a href="/src/public/about.html" class="hover:text-blue-400 hover:border-b-2">À propos</a>
+                <a href="/src/public/contact.html" class="hover:text-blue-400 hover:border-b-2">Contact</a>
+            </div> 
+        </div>
+ 
         <!-- ==================== ARTICLES À LA UNE ==================== -->
-        <section class="max-w-7xl mx-auto py-4 px-4 " >
+        <section class="nextToNavbar    max-w-7xl mx-auto py-4 px-4" >
             <div id="featured-articles" class="grid grid-cols-1 md:grid-cols-4 gap-2 md:h-[75vh]      la_une_container-js">
                 <!-- les articles dynamiques -->
             </div>
@@ -224,7 +227,7 @@
 
     <!-- Definition des templates -->
     <template id="la_une_article-js">
-        <a href="/src/public/article.html" class=" rounded-lg la_une_article-js" >
+        <a href="/src/public/article.html" class=" rounded-lg la_une_article-js  z-0" >
             <div class=" bg-white shadow overflow-hidden relative w-full h-full " >
                 <img src="src/assets/article4.jpg" alt="Article 1" class="w-full h-full  object-cover ">
                 <div class="p-3 absolute text-white bottom-0 z-50  flex flex-col gap-0.5-0.5">

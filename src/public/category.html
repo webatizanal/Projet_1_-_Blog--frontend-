@@ -22,11 +22,15 @@
         modal(); 
     </script>
     <script type="module" src="../logique_front/fonctions/responsive.js"></script>
+    <script type="module" >
+        import { aside } from '../logique_front/fonctions/responsive.js'
+        aside()
+    </script>
     <link rel="stylesheet" href="../modal.css">
     <link rel="icon" type="image/png" href="../assets/favicon.ico">
 </head>
 <body class="bg-gray-100"> 
-    <header class="h-fit">
+    <header class="h-fit   navbar fixed top-0 left-0 w-full bg-white shadow-md transition-transform duration-300 translate-y-0 z-50">
         <!-- ==================== PREMIÈRE NAVBAR ==================== -->
         <div class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
             <a href="/" class="hover:text-blue-400">
@@ -95,8 +99,8 @@
 
 
 
-    <div class="flex md:flex-row-reverse relative"> 
-        <span class="open bg-blue-100 absolute top-5 left-0 p-2 hamburger cursor-pointer rounded-r-2xl border border-blue-400 z-30">
+    <div class="nextToNavbar    flex md:flex-row-reverse relative"> 
+        <span class="open bg-blue-100 absolute top-10 left-0 p-2 hamburger cursor-pointer rounded-r-2xl border border-blue-400 z-30">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6  text-indigo-500">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 0 1 0 3.75H5.625a1.875 1.875 0 0 1 0-3.75Z" />
             </svg>
@@ -117,7 +121,7 @@
             </div>
         </main> 
 
-        <aside class="w-80 -translate-x-full absolute top-0 left-0 shrink-0 space-y-6 mt-5 asideCategory max-h-[100vh] overflow-y-scroll custom-scrollbar-hamburger  rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition-all duration-500 ease-in-out z-50">
+        <aside class="w-80 -translate-x-full absolute top-0 left-0 shrink-0 space-y-6 mt-5 asideCategory max-h-[100vh] overflow-y-scroll custom-scrollbar-hamburger  rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition-all duration-500 ease-in-out z-40">
             <!-- Bloc : Catégories -->
             <div class=" ">
                 <h3 class="mb-4 flex items-center justify-between gap-2 text-lg font-semibold text-gray-800">

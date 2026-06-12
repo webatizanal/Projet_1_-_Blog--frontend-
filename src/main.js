@@ -282,7 +282,6 @@ export async function category() {
 
 
 
-
     const paginationContainer = document.querySelector('.paginationBox')
     const pagination = new Pagination(
         6,                              

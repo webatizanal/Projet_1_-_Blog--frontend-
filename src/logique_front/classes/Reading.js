@@ -142,7 +142,7 @@ export default class Reading {
             console.log('Inscription réussie', result.data);
             message(
                 result.status, 
-                'Votre commentaire a été soummis avec succès. <br>En raison de l\'infiltraion des agents sur tout le web, Il sera examiner par le Staff !',
+                'Commentaire soumis. En attente de validation par le staff.',
                 e.target,
                 'beforebegin'
             )
@@ -150,7 +150,7 @@ export default class Reading {
             console.error('Erreur', result.status, result.error);
             message(
                 result.status, 
-                'Votre commentaire a malheureusement échoué. <br> Merci d\'essayer à nouveau !',
+                'Erreur lors de l’envoi. Réessayez.',
                 e.target,
                 'beforebegin'
             )
@@ -172,7 +172,7 @@ export default class Reading {
             console.log('Inscription réussie', result.data);
             message(
                 result.status, 
-                'Votre abonnement a été un succès. <br> Merci de votre interêt !',
+                'Votre abonnement a été un succès. Merci de votre interêt !',
                 form,
                 'beforebegin'
             )
@@ -181,7 +181,7 @@ export default class Reading {
             console.error('Erreur', result.status, result.error);
             message(
                 result.status, 
-                'Votre abonnement a malheureusement échoué. <br> Merci d\'essayer à nouveau interêt !',
+                'Erreur lors de l’envoi. Réessayez ou changez d\'adresse mail.',
                 form,
                 'beforebegin'
             )

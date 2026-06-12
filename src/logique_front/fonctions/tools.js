@@ -113,7 +113,7 @@ export function viewsNormalize(container){
 export function message(type, message, elementAdjacent, position) {
     let paraMessage = document.createElement('p');
     paraMessage.innerHTML = message;
-    paraMessage.classList.add('p-2', 'bg-white', 'text-sm', 'rounded-lg', 'my-2');
+    paraMessage.classList.add('p-2', 'bg-green-100', 'border', 'border-green-300', 'font-bold', 'text-center', 'text-sm', 'rounded-lg', 'my-2');
 
     if (type) {
         paraMessage.classList.add('text-green-700');   
@@ -129,16 +129,14 @@ export function message(type, message, elementAdjacent, position) {
         }
 
     } else {
-        paraMessage.classList.add('text-red-700');        
+        paraMessage.classList.add('text-red-700', 'bg-red-100', 'border', 'border-red-300',);        
     }
 
     elementAdjacent.insertAdjacentElement(position, paraMessage);
 
-
-    // ⏱️ Disparaît après 3 secondes
     setTimeout(() => {
         paraMessage.remove();
-    }, 5000);
+    }, 10000);
 }
 
 

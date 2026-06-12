@@ -207,6 +207,81 @@ export async function category() {
     })
     auteurContainer.querySelector('.allAttached .countAuteur').innerText = allAttachedAuteur
 
+    // ======================================================================
+    // Condition de sélection et de désélection des categories et des auteurs
+    // ======================================================================
+    const allCat = categoryContainer.querySelector('input.allCategory')
+    const otherCats = categoryContainer.querySelectorAll('input.thisCat')
+    const allAuthor = auteurContainer.querySelector('input.allAuthor')
+    const otherAuthors = auteurContainer.querySelectorAll('input.thisAuthor')
+
+    /** Cherche à savoir si tous les autres input (category) sont cochés
+     * ou s'il y a au moins un décoché
+     */
+    function allCkecked (nodeList){
+        const inArray = Array.from(nodeList)
+        let trie = []
+        nodeList.forEach((input) => {
+            input.checked ? trie.push(true) : trie.push(false)
+        })
+        if(trie.includes(false)) return false
+        return true
+    }
+    /** Cherche à savoir si tous les autres input (category) sont décochés 
+     * ou s'il y a au moins un coché
+     */
+    function noneCkecked (nodeList){
+        const inArray = Array.from(nodeList)
+        let trie = [] 
+        nodeList.forEach((input) => {
+            !input.checked ? trie.push(true) : trie.push(false)
+        })
+        if(trie.includes(false)) return false
+        return true
+    }
+
+    // CATEGORIES
+    // ==================
+    allCat.addEventListener('click', (e)=>{
+        otherCats.forEach((cat)=>{
+            cat.checked = true
+        })
+        e.target.checked = true
+    })
+    
+    otherCats.forEach((input) => {
+        input.addEventListener('click', (e)=>{
+            if (!allCkecked(otherCats)){
+                if(allCat.checked) allCat.checked = false
+                if(noneCkecked (otherCats)) allCat.checked = true
+            }else{
+                allCat.checked = true
+            }
+        })
+    })
+
+    // AUTHORS
+    // ==================
+    allAuthor.addEventListener('click', (e)=>{
+        otherAuthors.forEach((cat)=>{
+            cat.checked = true
+        })
+        e.target.checked = true
+    })
+    
+    otherAuthors.forEach((input) => {
+        input.addEventListener('click', (e)=>{
+            if (!allCkecked(otherAuthors)){
+                if(allAuthor.checked) allAuthor.checked = false
+                if(noneCkecked(otherAuthors)) allAuthor.checked = true
+            }else{
+                allAuthor.checked = true
+            }
+        })
+    })
+
+
+
 
     const paginationContainer = document.querySelector('.paginationBox')
     const pagination = new Pagination(
